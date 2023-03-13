@@ -32,10 +32,14 @@ function App() {
         },
         body: JSON.stringify(values),
       });
-      const data = await response.json();
-      console.log(data.message);
-      setStudent(values);
-      window.location.pathname = "/success";
+      if (response.status === 201) {
+        console.log("Application submitted successfully");
+        setStudent(values);
+        window.location.pathname = "/success";
+      } else if (response.status === 400) {
+        console.log("Student has already applied");
+        window.location.pathname = "/fail";
+      }
     } catch (error) {
       console.error(error.message);
     }
@@ -51,6 +55,9 @@ function App() {
       break;
     case "/success":
       ActivePage = <ApplicationSuccess/>;
+      break;
+    case "/fail":
+      ActivePage = <ApplicationFail />;
       break;
     default:
       break;
