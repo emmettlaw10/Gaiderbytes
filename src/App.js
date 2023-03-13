@@ -2,6 +2,7 @@ import appHeader from "./appHeader";
 import "./App.css";
 import StudentApplication from "./pages/StudentApplication";
 import ApplicationSuccess from "./pages/ApplicationSuccess";
+import ApplicationFail from "./pages/ApplicationFail";
 import { useState } from "react";
 
 function App() {
