@@ -30,14 +30,6 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <button className="btn_primary h-[42px] px-[16px] bg-[#E2E8F0] font-[600] text-[16px] text-[#172E38] rounded-[4px] hover:bg-[#34345c] hover:text-white transition-colors duration-300" onClick={()=>{navigate("/student-application")}}>
-                    Apply Now (student)
-                </button>
-                <button className="btn_primary h-[42px] px-[16px] bg-[#E2E8F0] font-[600] text-[16px] text-[#172E38] rounded-[4px] hover:bg-[#34345c] hover:text-white transition-colors duration-300" onClick={()=>{navigate("/coach-application")}}>
-                    Apply Now (coach)
-                </button>
-            </div>
 
         </div>
     </div>
