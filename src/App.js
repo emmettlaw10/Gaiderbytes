@@ -6,6 +6,7 @@ import StatusCheck from './pages/statusCheck/StatusCheck';
 import ApplicationSuccess from "./pages/ApplicationSuccess";
 import ApplicationFail from "./pages/ApplicationFail";
 import ServerError from "./pages/ServerError";
+import CoachesPage from './pages/CoachesPage';
 import Home from './pages/Home'
 import { useState } from "react";
 import Navbar from './components/navbar/Navbar';
@@ -111,6 +112,7 @@ function App() {
           <Route exact path="/fail" element={<ApplicationFail/>} />
           <Route exact path="/serverError" element={<ServerError/>} />
           <Route exact path="/checkStatus" element={<StatusCheck/>} />
+          <Route exact path="/coaches" element={<CoachesPage/>} />
           </Routes>
         </div>
     </BrowserRouter>
