@@ -70,7 +70,7 @@ function App() {
 
   const handleSave = async (values) => {
     try {
-      const response = await fetch("http://localhost:5000/studentApplication", {
+      const response = await fetch("/studentApplication", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function App() {
 
   const handleSaveCoach = async (formData) => {
     try {
-      const response = await fetch("http://localhost:5000/coachApplication", {
+      const response = await fetch("/coachApplication", {
         method: "POST",
         body: formData,
       });
@@ -119,7 +119,7 @@ function App() {
     console.log("herelol")
     console.log(formData)
     try {
-      const response = await fetch("http://localhost:5000/adminLogin", {
+      const response = await fetch("/adminLogin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
