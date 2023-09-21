@@ -19,8 +19,14 @@ const AdminLogin = ({onSave}) => {
     const {errors} = formState;
 
     const login = (formValues) => {
-        console.log(formValues)
-        onSave(formValues)
+        let a = {"username":"admin","password":"Gaiderbytes2000"}
+        console.log(JSON.stringify(a))
+        if (JSON.stringify(formValues) === JSON.stringify(a)){
+            window.location.pathname = "/adminAuthorized"
+        } else {
+            window.location.pathname = "/adminUnauthorized"
+        }
+
     }
 
 
