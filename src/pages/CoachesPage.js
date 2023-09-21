@@ -35,6 +35,8 @@ const CoachesPage = () => {
         <PageBubble
           title="Coaching Qualifications"
           description="Here are some qualifications you need to meet."
+          buttonTitle="Apply Now!"
+          navigateUrl="/coach-application"
         />
         <div className="grid grid-cols-2 gap-10 mt-[32px] mb-[64px] mx-[64px]">
           {qualifications.map((qualification) => (
