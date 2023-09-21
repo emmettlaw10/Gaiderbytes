@@ -9,6 +9,11 @@ import ServerError from "./pages/ServerError";
 import Home from './pages/Home'
 import { useState } from "react";
 import Navbar from './components/navbar/Navbar';
+import Eligible from "./pages/Eligible";
+import Ineligible from "./pages/Ineligible";
+import EligibilityCheck from "./pages/EligibilityCheck";
+import studentsPage from "./pages/StudentsPage";
+import StudentsPage from "./pages/StudentsPage";
 
 function App() {
   const [student, setStudent] = useState({
@@ -104,13 +109,18 @@ function App() {
       <Navbar/>
         <div className="pt-[75px] px-[10%]">
           <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/student-application" element={<StudentApplication onSave={handleSave} student={student} />} />
-          <Route exact path="/coach-application" element={<CoachApplication onSave={handleSaveCoach} coach={coach}/>} />
-          <Route exact path="/success" element={<ApplicationSuccess/>} />
-          <Route exact path="/fail" element={<ApplicationFail/>} />
-          <Route exact path="/serverError" element={<ServerError/>} />
-          <Route exact path="/checkStatus" element={<StatusCheck/>} />
+            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/student-application" element={<StudentApplication onSave={handleSave} student={student} />} />
+            <Route exact path="/coach-application" element={<CoachApplication onSave={handleSaveCoach} coach={coach}/>} />
+            <Route exact path="/success" element={<ApplicationSuccess/>} />
+            <Route exact path="/fail" element={<ApplicationFail/>} />
+            <Route exact path="/serverError" element={<ServerError/>} />
+            <Route exact path="/checkStatus" element={<StatusCheck/>} />
+            <Route exact path="/eligibilityCheck" element={<EligibilityCheck/>}/>
+            <Route exact path="/eligible" element={<Eligible/>} />
+            <Route exact path="/ineligible" element={<Ineligible/>} />
+            <Route exact path="/students" element={<StudentsPage/>} />
+
           </Routes>
         </div>
     </BrowserRouter>
