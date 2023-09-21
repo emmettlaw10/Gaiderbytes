@@ -6,8 +6,9 @@ import StatusCheck from './pages/statusCheck/StatusCheck';
 import ApplicationSuccess from "./pages/ApplicationSuccess";
 import ApplicationFail from "./pages/ApplicationFail";
 import ServerError from "./pages/ServerError";
+import Home from './pages/Home';
+import AboutUs from "./pages/AboutUs";
 import CoachesPage from './pages/CoachesPage';
-import Home from './pages/Home'
 import { useState } from "react";
 import Navbar from './components/navbar/Navbar';
 import Eligible from "./pages/Eligible";
@@ -110,7 +111,6 @@ function App() {
       <Navbar/>
         <div className="pt-[75px] px-[10%]">
           <Routes>
-
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/student-application" element={<StudentApplication onSave={handleSave} student={student} />} />
             <Route exact path="/coach-application" element={<CoachApplication onSave={handleSaveCoach} coach={coach}/>} />
@@ -123,6 +123,8 @@ function App() {
             <Route exact path="/ineligible" element={<Ineligible/>} />
             <Route exact path="/students" element={<StudentsPage/>} /
             <Route exact path="/coaches" element={<CoachesPage/>} />
+            <Route exact path="/about-us" element={<AboutUs/>}/>
+          
           </Routes>
         </div>
     </BrowserRouter>
