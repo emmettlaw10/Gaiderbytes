@@ -1,0 +1,4 @@
+/* Apply filter effect to change color on hover */
+.category-box:hover .category-image {
+    filter: brightness(0) invert(1); /* This inverts the colors to white on hover */
+  }
