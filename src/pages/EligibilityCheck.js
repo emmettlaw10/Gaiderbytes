@@ -5,7 +5,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {string, z} from "zod";
 
 
-const eligibilityCheck = ({}) => {
+const EligibilityCheck = ({}) => {
 
     const schema = z.object({
         residency: z.string().min(1),
@@ -156,4 +156,4 @@ const eligibilityCheck = ({}) => {
     )
 }
 
-export default eligibilityCheck
+export default EligibilityCheck
