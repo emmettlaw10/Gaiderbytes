@@ -25,20 +25,8 @@ function AdminStudent() {
 
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = ""
+            let apiUrl = `http://localhost:5000/admin/students?searchParam=${paramType.toLowerCase()}&value=${param}`
             try {
-                if(paramType === "ID"){
-                    apiUrl = `http://localhost:5000/admin/students/${param}`
-                }
-                else if(paramType === "Name"){
-                    // const parts = param.split(' ');
-                    // const first_name = parts[0];
-                    // const last_name = parts[1];
-                    apiUrl = `http://localhost:5000/admin/students?searchParam=${paramType.toLowerCase()}&value=${param}`
-                }
-                else{
-                    apiUrl = (`http://localhost:5000/admin/students?searchParam=${paramType.toLowerCase()}&value=${param}`);
-                }
                 const response = await fetch(apiUrl)
                 if (!response.ok) {
                     throw new Error("Failed to fetch student data.");
