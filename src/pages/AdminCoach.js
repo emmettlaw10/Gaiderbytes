@@ -59,7 +59,8 @@ function AdminCoach() {
                         onChange={handleParamTypeChange}
                     >
                         <option value="Name">Name</option>
-                        <option value="ID">ID</option>
+                        <option value="post_secondary_program">Program</option>
+                        <option value="institutions">Institution</option>
                         <option value="Email">Email</option>
                         <option value="Status">Status</option>
                     </select>
@@ -78,7 +79,8 @@ function AdminCoach() {
                         <thead>
                             <tr className="bg-[#E2E8F0] text-black uppercase text-sm leading-normal">
                                 <th className="py-2 px-6 text-left">Applicant's Name</th>
-                                <th className="py-2 px-6 text-left">Applicant ID</th>
+                                <th className="py-2 px-6 text-left">Program</th>
+                                <th className="py-2 px-6 text-left">Institution</th>
                                 <th className="py-2 px-6 text-left">Email</th>
                                 <th className="py-2 px-6 text-left">Status</th>
                                 <th className="py-2 px-6 text-left">Action</th>
@@ -91,7 +93,10 @@ function AdminCoach() {
                                         {coach.first_name + ' ' + coach.last_name}
                                     </td>
                                     <td className="py-2 px-6 text-left">
-                                        {coach.id}
+                                        {coach.post_secondary_program}
+                                    </td>
+                                    <td className="py-2 px-6 text-left">
+                                        {coach.institutions}
                                     </td>
                                     <td className="py-2 px-6 text-left">
                                         {coach.email}

@@ -59,7 +59,8 @@ function AdminStudent() {
                         onChange={handleParamTypeChange}
                     >
                         <option value="Name">Name</option>
-                        <option value="ID">ID</option>
+                        <option value="program_name">Program</option>
+                        <option value="institution_name">Institution</option>
                         <option value="Email">Email</option>
                         <option value="Status">Status</option>
                     </select>
@@ -78,7 +79,8 @@ function AdminStudent() {
                         <thead>
                             <tr className="bg-[#E2E8F0] text-black uppercase text-sm leading-normal">
                                 <th className="py-2 px-6 text-left">Applicant's Name</th>
-                                <th className="py-2 px-6 text-left">Applicant ID</th>
+                                <th className="py-2 px-6 text-left">Program</th>
+                                <th className="py-2 px-6 text-left">Institution</th>
                                 <th className="py-2 px-6 text-left">Email</th>
                                 <th className="py-2 px-6 text-left">Status</th>
                                 <th className="py-2 px-6 text-left">Action</th>
@@ -91,7 +93,10 @@ function AdminStudent() {
                                         {student.first_name + ' ' + student.last_name}
                                     </td>
                                     <td className="py-2 px-6 text-left">
-                                        {student.id}
+                                        {student.program_name}
+                                    </td>
+                                    <td className="py-2 px-6 text-left">
+                                        {student.institution_name}
                                     </td>
                                     <td className="py-2 px-6 text-left">
                                         {student.email}
