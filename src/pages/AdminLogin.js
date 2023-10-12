@@ -19,7 +19,6 @@ const AdminLogin = ({onSave}) => {
     const {errors} = formState;
 
     const login = (formValues) => {
-        console.log(formValues)
         onSave(formValues)
     }
 

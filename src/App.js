@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import StudentApplication from "./pages/StudentApplication";
 import CoachApplication from "./pages/CoachApplication";
@@ -17,8 +17,11 @@ import EligibilityCheck from "./pages/EligibilityCheck";
 import StudentsPage from "./pages/StudentsPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminUnauthorized from "./pages/AdminUnauthorized";
-import AdminSuccess from "./pages/AdminSuccessTemp";
 import MatchingPage from "./pages/MatchingPage";
+import AdminStudent from "./pages/AdminStudent";
+import AdminNavbar from "./components/adminNavbar/adminNavbar";
+import AdminCoach from './pages/AdminCoach';
+
 
 
 
@@ -128,7 +131,7 @@ function App() {
       });
       if (response.status === 300) {
         setUser(formData);
-        window.location.pathname = "/adminAuthorized";
+        window.location.pathname = "/adminDashboard/students";
       } else if (response.status === 301) {
         console.log(response.status);
         window.location.pathname = "/adminUnauthorized";
@@ -167,7 +170,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar/>
+      <DynamicNavbar/>
         <div className="pt-[75px] px-[10%]">
           <Routes>
             <Route exact path="/" element={<Home/>}/>
@@ -184,13 +187,20 @@ function App() {
             <Route exact path="/coaches" element={<CoachesPage/>} />
             <Route exact path="/about-us" element={<AboutUs/>}/>
             <Route exact path="/admin" element={<AdminLogin onSave={handleLogin}/>}/>
-            <Route exact path="/adminAuthorized" element={<AdminSuccess/>}/>
+            <Route exact path="/adminDashboard/students" element={<AdminStudent/>}/>
+            <Route exact path="/adminDashboard/coaches" element={<AdminCoach/>}/>
+
             <Route exact path="/adminUnauthorized" element={<AdminUnauthorized/>}/>
             <Route exact path="/admin/matching" element={<MatchingPage createMatch={match}/>}/>
           </Routes>
         </div>
     </BrowserRouter>
   );
+}
+
+function DynamicNavbar() {
+  const location = useLocation();
+  return /^\/adminDashboard\b/.test(location.pathname) ? <AdminNavbar/> : <Navbar/>;
 }
 
 export default App;
