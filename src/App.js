@@ -18,6 +18,7 @@ import StudentsPage from "./pages/StudentsPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminUnauthorized from "./pages/AdminUnauthorized";
 import AdminSuccess from "./pages/AdminSuccessTemp";
+import MatchingPage from "./pages/MatchingPage";
 
 
 
@@ -116,8 +117,6 @@ function App() {
   };
 
   const handleLogin = async (formData) => {
-    console.log("herelol")
-    console.log(formData)
     try {
       const response = await fetch("http://localhost:5000/adminLogin", {
         method: "POST",
@@ -128,7 +127,6 @@ function App() {
 
       });
       if (response.status === 300) {
-        console.log("Application submitted successfully");
         setUser(formData);
         window.location.pathname = "/adminAuthorized";
       } else if (response.status === 301) {
@@ -142,6 +140,30 @@ function App() {
       console.error(error.message);
     }
   };
+
+  const match = async (data) => {
+    try {
+      console.log(data)
+      const response = await fetch("http://localhost:5000/admin/match", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: data,
+      });
+      if (response.status === 206) {
+        console.log(response.status)
+        window.location.pathname = "/adminAuthorized";
+      } else if (response.status === 406 || response.status === 416) {
+        console.log(response.status);
+        window.location.pathname = "/adminUnauthorized";
+      } else if (response.status === 500) {
+        console.log("Server Error");
+        window.location.pathname = "/serverError";
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+
+  }
 
   return (
     <BrowserRouter>
@@ -164,6 +186,7 @@ function App() {
             <Route exact path="/admin" element={<AdminLogin onSave={handleLogin}/>}/>
             <Route exact path="/adminAuthorized" element={<AdminSuccess/>}/>
             <Route exact path="/adminUnauthorized" element={<AdminUnauthorized/>}/>
+            <Route exact path="/admin/matching" element={<MatchingPage createMatch={match}/>}/>
           </Routes>
         </div>
     </BrowserRouter>
