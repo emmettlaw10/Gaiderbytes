@@ -21,6 +21,11 @@ import MatchingPage from "./pages/MatchingPage";
 import AdminStudent from "./pages/AdminStudent";
 import AdminNavbar from "./components/adminNavbar/adminNavbar";
 import AdminCoach from './pages/AdminCoach';
+import matchSuccess from "./pages/MatchSuccess";
+import StudentMatchedAlready from "./pages/StudentMatchedAlready";
+import coachMax from "./pages/CoachMax";
+import MatchSuccess from "./pages/MatchSuccess";
+import CoachMax from "./pages/CoachMax";
 
 
 
@@ -154,10 +159,13 @@ function App() {
       });
       if (response.status === 206) {
         console.log(response.status)
-        window.location.pathname = "/adminAuthorized";
-      } else if (response.status === 406 || response.status === 416) {
+        window.location.pathname = "/matchSuccess";
+      } else if (response.status === 406) {
         console.log(response.status);
-        window.location.pathname = "/adminUnauthorized";
+        window.location.pathname = "/matchFailStudent";
+      }else if (response.status === 416) {
+        console.log(response.status);
+        window.location.pathname = "/matchFailCoach";
       } else if (response.status === 500) {
         console.log("Server Error");
         window.location.pathname = "/serverError";
@@ -189,9 +197,11 @@ function App() {
             <Route exact path="/admin" element={<AdminLogin onSave={handleLogin}/>}/>
             <Route exact path="/adminDashboard/students" element={<AdminStudent/>}/>
             <Route exact path="/adminDashboard/coaches" element={<AdminCoach/>}/>
-
             <Route exact path="/adminUnauthorized" element={<AdminUnauthorized/>}/>
-            <Route exact path="/admin/matching" element={<MatchingPage createMatch={match}/>}/>
+            <Route exact path="/adminDashboard/matching" element={<MatchingPage createMatch={match}/>}/>
+            <Route exact path="/matchFailStudent" element={<StudentMatchedAlready/>}/>
+            <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
+            <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
           </Routes>
         </div>
     </BrowserRouter>
