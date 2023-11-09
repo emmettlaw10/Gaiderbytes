@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const MatchingPage = ({createMatch}) => {
 
@@ -12,6 +13,8 @@ const MatchingPage = ({createMatch}) => {
     const [paramTypeS, setParamTypeS] = useState("Name");
     const [paramS, setParamS] = useState("");
     const [canMatch, setCanMatch] = useState(true)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCoachData = async () => {
@@ -179,10 +182,17 @@ const MatchingPage = ({createMatch}) => {
                                     {coach.email}
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800" onClick={() => setCoachSelection(index)}>Select</button>
+                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none
+                                            focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
+                                            onClick={() => setCoachSelection(index)}
+                                    >Select
+                                    </button>
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800">View Detail</button>
+                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                            focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
+                                            onClick={()=>{navigate('/adminDashboard/coachDetails',{state:{id: coach.id}})}}
+                                    >View Detail</button>
                                 </td>
                             </tr>
                         ))}
@@ -236,10 +246,16 @@ const MatchingPage = ({createMatch}) => {
                                     {student.status}
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800" onClick={() => setStudentSelection(index)}>Select</button>
+                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                    focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
+                                            onClick={() => setStudentSelection(index)}>Select
+                                    </button>
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800">View Detail</button>
+                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                        focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
+                                            onClick={()=>{navigate('/adminDashboard/studentDetails',{state:{id: student.id}})}}
+                                    >View Detail</button>
                                 </td>
                             </tr>
                         ))}

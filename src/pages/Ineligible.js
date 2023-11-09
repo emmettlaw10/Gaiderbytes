@@ -1,10 +1,12 @@
 import React from "react";
+import PageBubble from "../components/page_bubble/page_bubble";
 
 function Ineligible() {
     return (
         <div>
-            <p >Unfortunately, according to your answers, you are ineligible for Canadian HigherEd coaches program at this time.</p>
-            <p>if you have any questions please feel free to contact us.</p>
+            <PageBubble
+                title="Ineligible"
+                description="Unfortunately, according to your answers, you are ineligible for Canadian HigherEd coaches program at this time. If you have any questions please feel free to contact us."/>
         </div>
     );
 }

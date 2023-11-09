@@ -1,11 +1,13 @@
 import React from "react";
+import PageBubble from "../components/page_bubble/page_bubble";
 
 function ServerError() {
     return (
+
       <div>
-        <h1>Application Failed</h1>
-        <p>Sorry, we are having technical difficulties on our side. Please try again later.</p>
-        <p>Thank you for your understanding</p>
+          <PageBubble
+              title="Application Failed"
+              description="Sorry, we are having technical difficulties on our side. Please try again later"/>
       </div>
     );
   }

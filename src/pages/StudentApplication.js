@@ -69,46 +69,53 @@ import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
         };
 
         return (
-            <div>
+            <div className="lg:w-1/2 w-full m-auto">
                 <div className="m-2 shadow-lg bg-red-700 text-white rounded-md p-3">
                 <h1 className="text-3xl"> Student Application Form</h1>
                     <p>Thank you for your interest. Please fill out the form below to apply to receive coaching.</p>
                 </div>
                 <div className="shadow-lg bg-slate-200 p-3 rounded-md m-2">
                 <div className="studentApplicationForm">
-                    
                     <form onSubmit={handleSubmit(handleSave)}>
-                        <div>
-                            <h1 className="text-xl">Personal Information</h1>
-                            <label htmlFor="first_name">First Name: </label>
-                            <input type="text" className="rounded-md p-3 ml-5 w-50" placeholder="Enter first name"
+                        <div className="w-full m-auto text-center">
+                            <h1 className="text-3xl font-bold">Personal Information</h1>
+                        </div>
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="first_name">First Name: </label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Enter first name"
                                    {...register("first_name")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.first_name?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="last_name">Last Name:</label>
-                            <input type="text" className="rounded-md p-3 m-1 ml-7 w-50" placeholder="Enter last name"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="last_name">Last Name:</label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Enter last name"
                                    {...register("last_name")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.last_name?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="email">Email Address:</label>
-                            <input type="email" placeholder="name@example.com" className="p-3 m-1 w-50 rounded-md"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="email">Email Address:</label>
+                            <input type="email"
+                                   placeholder="name@example.com"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
                                    {...register("email")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.email?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="province">Province:</label>
-                            <Select className="m-1 w-60 rounded-md"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="province">Province:</label>
+                            <Select className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
                                     value ={provinces.find(({value}) => value ===field.value)}
                                     onChange={handleProvinceSelectChange}
                                     options={provinces}
@@ -117,73 +124,84 @@ import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
                                 {errors.province?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="city">City:</label>
-                            <input type="text" className="p-3 m-1 ml-20 w-60 rounded-md" placeholder="City"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="city">City:</label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="City"
                                    {...register("city")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.city?.message}
                             </div>
                         </div>
-                        <label htmlFor="address">Street Address:</label>
-                        <input type="text" className="p-3 m-1 w-60 rounded-md" placeholder="123 street name"
-                               {...register("address")}
-                        />
-                        <div style={{color: "red"}}>
-                            {errors.address?.message}
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="address">Street Address:</label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="123 street name"
+                                   {...register("address")}
+                            />
+                            <div style={{color: "red"}}>
+                                {errors.address?.message}
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="postal_code">Postal Code:</label>
-                            <input type="text" className="p-3 m-1 ml-5 w-60 rounded-md" placeholder="A4B1A1"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="postal_code">Postal Code:</label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="A4B1A1"
                                    {...register("postal_code")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.postal_code?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="date_of_birth">Date of Birth:</label>
-                            <input type="date" className="p-3 m-1 ml-4 w-60 rounded-md"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="date_of_birth">Date of Birth:</label>
+                            <input type="date"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
                                    {...register("date_of_birth")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.date_of_birth?.message}
                             </div>
                         </div>
-                        <div>
-                            <RadioGroup onChange={handlePronounSelectChange}>
-                                <label>Pronouns:</label>
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold">Pronouns:</label>
+                            <RadioGroup className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96" onChange={handlePronounSelectChange}>
                                 <FormControlLabel
                                     control={
-                                    <Radio
-                                        value={"he/him"}
-                                        onClick={() => setChecked(false)}
-                                    />
+                                        <Radio
+                                            value={"he/him"}
+                                            onClick={() => setChecked(false)}
+                                        />
                                     }
                                     label={"He/Him"}/>
                                 <FormControlLabel
                                     control={
-                                    <Radio
-                                        value={"she/her"}
-                                        onClick={() => setChecked(false)}
-                                    />} label={"She/Her"}/>
+                                        <Radio
+                                            value={"she/her"}
+                                            onClick={() => setChecked(false)}
+                                        />} label={"She/Her"}/>
                                 <FormControlLabel
                                     control={
                                         <Radio
+
                                             onClick={() => setChecked(true)}
-                                            value="No"
+                                            value=""
                                             label="other"
                                         />
                                     }
                                     label={
                                         checked ? (
-                                                <input
-                                                    disabled={!checked}
-                                                    className="p-3 m-1 w-60 rounded-md"
-                                                    placeholder="Enter Pronoun"
-                                                    onChange={handlePronounSelectChange}
-                                                />
+                                            <input
+                                                disabled={!checked}
+
+                                                className="p-3 m-1 w-60 rounded-md"
+                                                placeholder="Enter Pronoun"
+                                                onChange={handlePronounSelectChange}
+                                            />
                                         ) : (
                                             "Other"
                                         )
@@ -194,63 +212,81 @@ import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
                                 {errors.pronoun?.message}
                             </div>
                         </div>
-                        <div>
-                            <h1 className="text-xl">Institution Information</h1>
-                            <label htmlFor="institution_name">Name of Post-secondary institution:</label>
-                            <input type="text" className="p-3 m-1 w-60 rounded-md" placeholder="Enter name of school"
+                        <div className="w-full m-auto text-center">
+                            <h1 className="text-3xl font-bold">Institution Information</h1>
+                        </div>
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="institution_name">Name of Post-secondary institution:</label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Enter name of school"
                                    {...register("institution_name")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.institution_name?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="program_name">Program Name:</label>
-                            <input type="text" className="p-3 m-1 w-60 rounded-md" placeholder="Enter name of program"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="program_name">Program Name:</label>
+                            <input type="text"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Enter name of program"
                                    {...register("program_name")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.program_name?.message}
                             </div>
                         </div>
-                        <h1 className="text-xl">Emergency Contact</h1>
-                        <div>
-                            <label htmlFor="emergency_contact_first_name">First Name:</label>
-                            <input type="string" className="p-3 m-1 w-60 rounded-md" placeholder="Enter contact's first name"
+                        <div className="w-full m-auto text-center mt-5">
+                            <h1 className="text-3xl font-bold">Emergency Contact</h1>
+                        </div>
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="emergency_contact_first_name">First Name:</label>
+                            <input type="string"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Enter contact's first name"
                                    {...register("emergency_contact_first_name")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.emergency_contact_first_name?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="emergency_contact_last_name">Last Name:</label>
-                            <input type="string" className="p-3 m-1 w-60 rounded-md" placeholder="Enter contact's last name"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="emergency_contact_last_name">Last Name:</label>
+                            <input type="string"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Enter contact's last name"
                                    {...register("emergency_contact_last_name")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.emergency_contact_last_name?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="emergency_contact_phone">Phone Number:</label>
-                            <input type="string" className="rounded-md p-3 m-1" placeholder="1234567890"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="emergency_contact_phone">Phone Number:</label>
+                            <input type="string"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="1234567890"
                                    {...register("emergency_contact_phone")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.emergency_contact_phone?.message}
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="emergency_contact_relation">Emergency Contact Relation:</label>
-                            <input type="string" className="rounded-md p-3 m-1" placeholder="Contact's relation to you"
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <label className="text-xl font-bold" htmlFor="emergency_contact_relation">Emergency Contact Relation:</label>
+                            <input type="string"
+                                   className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                                   placeholder="Contact's relation to you"
                                    {...register("emergency_contact_relation")}
                             />
                             <div style={{color: "red"}}>
                                 {errors.emergency_contact_relation?.message}
                             </div>
                         </div>
-                        <button className="bg-red-400 p-3 rounded-md hover:bg-red-200 m-2 ml-2" type="submit">Apply</button>
+                        <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
+                            <button className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96 bg-red-400" type="submit">Apply</button>
+                        </div>
                     </form>
                 </div>
                 </div>
