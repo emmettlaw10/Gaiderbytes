@@ -4,7 +4,6 @@ import {useController, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import Select from "react-select";
 import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
-import toast from "react-hot-toast";
 
 
 const CoachApplication = ({onSave}) => {
