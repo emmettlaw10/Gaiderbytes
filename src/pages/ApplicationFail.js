@@ -1,10 +1,12 @@
 import React from "react";
+import PageBubble from "../components/page_bubble/page_bubble";
 
 function ApplicationFail() {
     return (
       <div>
-        <h1>Application Failed</h1>
-        <p>Sorry, you have already applied. Please check your email for the status of your application.</p>
+          <PageBubble
+              title="Application Failed"
+              description="We have already received your application. Please contact us for more information"/>
       </div>
     );
   }

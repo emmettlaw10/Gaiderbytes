@@ -7,9 +7,17 @@ const Home = () => {
             <div>
                 <PageBubble
                     title="Need Help In Your First Year Post-Secondary?"
-                    description="Apply Now To Be Matched With a Coach!"
-                    buttonTitle="Apply Now!"
-                    navigateUrl="/student-application"
+                    description="Interested in coaching in critical skills for students?"
+                    buttonTitle="Learn More!"
+                    navigateUrl="/students"
+                />
+            </div>
+            <div>
+                <PageBubble
+                    title="Interested in becoming a coach?"
+                    description="Do you want to help mentor driven students?"
+                    buttonTitle="Learn More!"
+                    navigateUrl="/coaches"
                 />
             </div>
             <div>

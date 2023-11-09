@@ -1,12 +1,13 @@
 import React from "react";
+import PageBubble from "../components/page_bubble/page_bubble";
 
 function ApplicationSuccess () {
 
     return(
     <div>
-        <h1>Application Received</h1>
-        <h2>Thank you for your interest in Canadian HigherEd Coaches</h2>
-        <h2>Don't forget to check on the status of your application!</h2>
+        <PageBubble
+        title="Application Received"
+        description="Thank you for your interest in Canadian HigherEd Coaches! You will receive another email when you are matched."/>
     </div>
     );
 }

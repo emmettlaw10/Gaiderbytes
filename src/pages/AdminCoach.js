@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 
 function AdminCoach() {
@@ -47,6 +48,8 @@ function AdminCoach() {
     const handleParamChange = (e) => {
         setParam(e.target.value);
     };
+
+    const navigate = useNavigate();
 
     return (
         <div className="mt-[36px] mb-[64px] flex flex-col">
@@ -105,7 +108,10 @@ function AdminCoach() {
                                         {coach.status}
                                     </td>
                                     <td className="py-2 px-6 text-left">
-                                        <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800">View Detail</button>
+                                        <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                         focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
+                                                onClick={()=>{navigate('/adminDashboard/coachDetails',{state:{id: coach.id}})}}
+                                        >View Detail</button>
                                     </td>
                                 </tr>
                             ))}

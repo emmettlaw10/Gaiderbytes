@@ -21,11 +21,12 @@ import MatchingPage from "./pages/MatchingPage";
 import AdminStudent from "./pages/AdminStudent";
 import AdminNavbar from "./components/adminNavbar/adminNavbar";
 import AdminCoach from './pages/AdminCoach';
-import matchSuccess from "./pages/MatchSuccess";
 import StudentMatchedAlready from "./pages/StudentMatchedAlready";
-import coachMax from "./pages/CoachMax";
 import MatchSuccess from "./pages/MatchSuccess";
 import CoachMax from "./pages/CoachMax";
+import StudentDetails from "./pages/StudentDetails";
+import CoachDetails from "./pages/CoachDetails";
+
 
 
 
@@ -159,7 +160,7 @@ function App() {
       });
       if (response.status === 206) {
         console.log(response.status)
-        window.location.pathname = "/matchSuccess";
+        window.location.reload()
       } else if (response.status === 406) {
         console.log(response.status);
         window.location.pathname = "/matchFailStudent";
@@ -173,8 +174,69 @@ function App() {
     } catch (error) {
       console.error(error.message);
     }
+  };
 
+  const updateStudentStatus = async (data, id) => {
+    let apiUrl = `http://localhost:5000/admin/student/${id}/status`
+    try {
+      const response = await fetch(apiUrl, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: data,
+      });
+      if (response.status === 200) {
+        window.location.reload()
+      } else if (response.status === 400) {
+        console.log(response.status);
+      } else if (response.status === 500) {
+        console.log("Server Error");
+        window.location.pathname = "/serverError";
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const updateCoachStatus = async (data, id) => {
+    let apiUrl = `http://localhost:5000/admin/coach/${id}/status`
+    try {
+      const response = await fetch(apiUrl, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: data,
+      });
+      if (response.status === 200) {
+        window.location.reload()
+      } else if (response.status === 400) {
+        console.log(response.status);
+        window.location.pathname = "/matchFailStudent";
+      } else if (response.status === 500) {
+        console.log("Server Error");
+        window.location.pathname = "/serverError";
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const removeCoach = async (id) => {
+    let apiUrl = `http://localhost:5000/admin/application/${id}/unmatch`
+    try {
+      const response = await fetch(apiUrl, {
+        method: "PUT",
+      });
+      if (response.status === 200) {
+        console.log(response.status)
+        window.location.reload()
+      } else if (response.status === 500) {
+        console.log("Server Error");
+        window.location.pathname = "/serverError";
+        }
+    } catch (error) {
+      console.error(error.message);
+    }
   }
+
 
   return (
     <BrowserRouter>
@@ -202,6 +264,8 @@ function App() {
             <Route exact path="/matchFailStudent" element={<StudentMatchedAlready/>}/>
             <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
             <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
+            <Route exact path="/adminDashboard/studentDetails" element={<StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/>}/>
+            <Route exact path="/adminDashboard/coachDetails" element={<CoachDetails updateCoachStatus={updateCoachStatus} />}/>
           </Routes>
         </div>
     </BrowserRouter>
