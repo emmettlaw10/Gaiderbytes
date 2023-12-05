@@ -3,7 +3,7 @@ import user_review_pic from "../images/user_review_pic.svg"
 function AboutUs (){
     return(
         <div>
-            <div className="m-2 shadow-lg h-auto bg-[#E2E8F0] text-black items-center rounded-[64px] p-3">
+            <div className="m-2 shadow-lg h-auto bg-[#E2E8F0] text-black items-center rounded-md p-3">
                 <h1 className="text-3xl font-[800]">About Us</h1>
             </div>
             <div className="flex flex-row">
@@ -13,7 +13,7 @@ function AboutUs (){
                 </div>
                 <div className="m-2 shrink w-3/4">
                     <h1 className="text-3xl font-bold">User Reviews</h1>
-                    <div className="bg-gray-300 rounded-md p-3 shadow-lg">
+                    <div className="bg-[#E2E8F0] rounded-md p-3 shadow-lg">
                         <div>
                             <img src={user_review_pic} alt="User review picture" className="w-16 p-1"/>
                         </div>
@@ -21,7 +21,7 @@ function AboutUs (){
                         <p className="font-bold">- Anon Name</p>
                     </div>
                     <br/>
-                    <div className="bg-gray-300 rounded-md p-3">
+                    <div className="bg-[#E2E8F0] rounded-md p-3">
                         <div>
                             <img src={user_review_pic} alt="User review picture" className="w-16 p-1"/>
                         </div>
