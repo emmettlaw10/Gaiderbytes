@@ -55,8 +55,8 @@ const EligibilityCheck = ({}) => {
 
     return (
         <div>
-            <div className="m-2 shadow-lg bg-red-700 text-white rounded-md p-3">
-                <h1 className="text-3xl"> Student Eligibility Check</h1>
+            <div className="m-2 shadow-lg bg-[#34345c] text-white rounded-md p-3">
+                <h1 className="text-3xl font-[600]"> Student Eligibility Check</h1>
                 <p>Thank you for your interest. Please fill out the form below to check your eligibility for our program!.</p>
             </div>
             <div className="shadow-lg bg-slate-200 p-3 rounded-md m-2">
@@ -145,7 +145,7 @@ const EligibilityCheck = ({}) => {
                             {errors.acceptance?.message}
                         </div>
                     </div>
-                    <button className="bg-red-400 p-3 rounded-md hover:bg-red-200 m-2 ml-2" type="submit">Check Eligibility</button>
+                    <button className="p-3 rounded-md m-2 ml-2 font-[600] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300" type="submit">Check Eligibility</button>
                 </form>
 
 

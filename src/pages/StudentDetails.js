@@ -70,48 +70,48 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
     }
 
     return(
-        <div className="lg:w-2/3 w-full m-auto">
-            <div className="w-full m-auto text-center">
-                <h1 className="text-3xl font-bold underline m-5">Student Details</h1>
-            </div>
-            <form onSubmit={handleSubmit(updateStatus)}>
-                <div className="flex flex-row mt-5 justify-between">
-                    <div className="flex flex-col min-w-1/3">
-                        <label className="text-xl font-bold mb-1">Current Status</label>
-                        <div className="text-xl font-italic ml-10">
-                            {studentData.status}
-                        </div>
-                    </div>
-                    <div className="flex flex-col min-w-1/3">
-                        <label className="text-xl font-bold" htmlFor="status">New Status:</label>
-                        <Select className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
-                                value ={statuses.find(({value}) => value ===field.value)}
-                                onChange={handleStatusChange}
-                                options={statuses}
-                        />
-                        <div style={{color: "red"}}>
-                            {errors.status?.message}
-                        </div>
-                    </div>
-                    <div className="flex flex-col min-w-1/3">
-                        <button className="bg-red-400 p-3 rounded-md hover:bg-red-200 w-1/2 m-auto" type="submit">Change Status</button>
-                    </div>
+        <div className="w-full mx-auto my-5">
+            <div className="bg-[#E2E8F0] rounded-md w-full p-3">
+                <div className="w-full m-auto text-center">
+                    <h1 className="text-[36px] font-[800] m-5">Student Details</h1>
                 </div>
-            </form>
+                <form onSubmit={handleSubmit(updateStatus)}>
+                    <div className="flex flex-col mt-5 justify-between">
+                        <div className="flex flex-row min-w-1/3 items-center pb-2">
+                            <label className="text-xl font-bold mb-1">Current Status:</label>
+                            <div className="text-xl font-italic ml-2 uppercase">
+                                {studentData.status}
+                            </div>
+                        </div>
+                        <div className="flex flex-row min-w-1/3 items-center">
+                            <label className="text-xl font-bold" htmlFor="status">New Status:</label>
+                            <Select className="rounded-md ml-2 w-full w-[200px]"
+                                    value ={statuses.find(({value}) => value ===field.value)}
+                                    onChange={handleStatusChange}
+                                    options={statuses}
+                            />
+                            <button className="font-[600] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 py-2 rounded-md px-5 ml-2" type="submit">Change Status</button>
+                        </div>
+                        <div className="text-red-500 justify-end">
+                                {errors.status?.message}
+                        </div>
+                    </div>
+                </form>
 
-            <div className="flex flex-row mt-5 w-full text-center justify-center">
-                <div className="flex flex-col min-w-1/3">
-                    <label className="text-xl font-bold mb-1">Coach Id</label>
-                    <div className="text-xl font-italic ml-10">
-                        {studentData.coach_id}
+                <div className="flex flex-row mt-5 w-full items-center">
+                    <div className="flex min-w-1/3">
+                        <label className="text-xl font-bold mb-1">Coach Id:</label>
+                        <div className="text-xl font-italic ml-2">
+                            {studentData.coach_id || "Not Matched Yet"}
+                        </div>
+                    </div>
+                    <div className="flex flex-col min-w-1/3 items-center">
+                        <button className="font-[600] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 py-2 rounded-md px-5 ml-2" onClick={clearCoach}>Clear Coach</button>
                     </div>
                 </div>
-                <div className="flex flex-col min-w-1/3">
-                    <button className="bg-red-400 p-3 rounded-md hover:bg-red-200 w-1/2 m-auto" onClick={clearCoach}>Clear Coach</button>
-                </div>
             </div>
-            <div className="w-full m-auto text-center">
-                <h1 className="text-2xl font-bold m-5">Personal Information</h1>
+            <div className="w-full m-auto text-start">
+                <h1 className="text-[24px] font-[800] mt-5">Personal Information</h1>
             </div>
             <table className="min-w-max w-full m-auto">
                 <thead>
@@ -159,8 +159,8 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
                     </tr>
                 </tbody>
             </table>
-            <div className="w-full m-auto text-center">
-                <h1 className="text-2xl font-bold m-5">Education Information</h1>
+            <div className="w-full text-start mt-5">
+                <h1 className="text-[24px] font-[800]">Education Information</h1>
             </div>
             <table className="min-w-max w-full table-auto">
                 <thead>
@@ -180,8 +180,8 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
                 </tr>
                 </tbody>
             </table>
-            <div className="w-full m-auto text-center">
-                <h1 className="text-3xl font-bold m-5">Emergency Contact Information</h1>
+            <div className="w-full text-start mt-5">
+                <h1 className="text-[24px] font-[800]">Emergency Contact Information</h1>
             </div>
             <table className="min-w-max w-full m-auto">
                 <thead>

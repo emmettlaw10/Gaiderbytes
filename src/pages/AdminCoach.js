@@ -108,7 +108,7 @@ function AdminCoach() {
                                         {coach.status}
                                     </td>
                                     <td className="py-2 px-6 text-left">
-                                        <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                        <button className="font-[600] bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
                                          focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
                                                 onClick={()=>{navigate('/adminDashboard/coachDetails',{state:{id: coach.id}})}}
                                         >View Detail</button>

@@ -105,8 +105,8 @@ const CoachApplication = ({onSave}) => {
 
     return (
         <div className="lg:w-1/2 w-full m-auto">
-            <div className="m-2 shadow-lg bg-red-700 text-white rounded-md p-3">
-                <h1 className="text-3xl"> Coach Application Form</h1>
+            <div className="my-2 shadow-lg bg-[#34345c] text-white rounded-md p-3">
+                <h1 className="text-3xl font-[600]"> Coach Application Form</h1>
                 <p>Thank you for your interest. Please fill out the form below to apply to be a coach!.</p>
             </div>
             <div className=" flex flex-col shadow-lg bg-slate-200 p-3 rounded-md w-full m-auto coachApplicationForm">
@@ -384,7 +384,7 @@ const CoachApplication = ({onSave}) => {
                             </div>
                         </div>
                         <div className="flex flex-col mt-5 w-full md:w-fit m-auto justify-center">
-                            <button className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96 bg-red-400" type="submit">Apply</button>
+                            <button className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96 font-[600] text-[24px] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300" type="submit">Apply</button>
                         </div>
                     </form>
                 </div>

@@ -4,8 +4,8 @@ import {useNavigate} from "react-router-dom";
 
 const MatchingPage = ({createMatch}) => {
 
-    const [selectedStudent, setSelectedStudent] = useState("Please Select");
-    const [selectedCoach, setSelectedCoach] = useState("Please Select");
+    const [selectedStudent, setSelectedStudent] = useState("Select From Below");
+    const [selectedCoach, setSelectedCoach] = useState("Select From Below");
     const [coaches, setCoaches] = useState([]);
     const [students, setStudents] = useState([]);
     const [paramTypeC, setParamTypeC] = useState("Name");
@@ -116,32 +116,35 @@ const MatchingPage = ({createMatch}) => {
 
     return (
         <div className="">
-            <div className="shadow-lg bg-slate-200 p-3 rounded-md m-auto mt-5 w-fit align-middle">
-                <div className="flex items-center">
+            <div className="shadow-lg bg-slate-200 p-3 rounded-md m-auto mt-5 w-fit align-middle w-full">
+                <div className="flex items-center justify-between">
                     <div className="flex-col">
                         <h2 className="font-[700] text-[36px] leading-22">Matching</h2>
                         <p>Please select 1 student and 1 coach</p>
                     </div>
-                    <div className="flex items-center m-5">
-                        <label className="font-bold">Student:</label>
-                        <div className="p-2 bg-white rounded-md items-center h-fit">
-                            <p className="text-xl">{selectedStudent.first_name || selectedStudent}</p>
+                    <div className="flex flex-row">
+                        <div className="flex flex-col">
+                            <div className="flex justify-between items-center w-full">
+                                <label className="font-bold">Selected Student:</label>
+                                <div className="p-2 rounded-md items-center h-fit w-[180px] word-break">
+                                    <p className="text-xl truncate">{selectedStudent.first_name || selectedStudent}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between w-full">
+                                <label className="font-bold">Selected Coach:</label>
+                                <div className="p-2 rounded-md items-center h-fit w-[180px] wor">
+                                    <p className="text-xl truncate">{selectedCoach.first_name || selectedCoach}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex items-center m-5">
-                        <label className="font-bold">Coach:</label>
-                        <div className="p-2 bg-white rounded-md items-center h-fit">
-                            <p className="text-xl">{selectedCoach.first_name || selectedCoach}</p>
+                        <div className="flex items-center justify-center">
+                            <button className="font-[600] border border-black py-3 px-5 rounded-md hover:border-[#34345c] transition-opacity transition-colors duration-300 hover:text-white hover:bg-[#34345c] m-2 ml-2 disabled:opacity-50 disabled:pointer-events-none matchButton" disabled={canMatch} onClick={match}>Match</button>
                         </div>
-                    </div>
-
-                    <div>
-                        <button className="bg-red-400 p-3 rounded-md hover:bg-red-200 m-2 ml-2 disabled:bg-gray-500 disabled:hover:bg-gray-500 matchButton" disabled={canMatch} onClick={match}>Match</button>
                     </div>
                 </div>
             </div>
             <div className="flex justify-between items-center">
-                <h2 className="font-[700] text-[36px] leading-22">Coach Applicants</h2>
+                <h2 className="font-[700] text-[36px] leading-22 pt-5">Coach Applicants</h2>
                 <div className="ml-4 flex space-x-2">
                     <select
                         className="px-2 py-2 border rounded-md bg-white"
@@ -182,14 +185,14 @@ const MatchingPage = ({createMatch}) => {
                                     {coach.email}
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none
+                                    <button className="font-[600] bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white focus:outline-none
                                             focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
                                             onClick={() => setCoachSelection(index)}
                                     >Select
                                     </button>
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                    <button className="font-[600] bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
                                             focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
                                             onClick={()=>{navigate('/adminDashboard/coachDetails',{state:{id: coach.id}})}}
                                     >View Detail</button>
@@ -200,7 +203,7 @@ const MatchingPage = ({createMatch}) => {
                     </table>
                 </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center pt-5">
                 <h2 className="font-[700] text-[36px] leading-22">Student Applicants</h2>
                 <div className="ml-4 flex space-x-2">
                     <select
@@ -246,13 +249,13 @@ const MatchingPage = ({createMatch}) => {
                                     {student.status}
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                    <button className="font-[600] bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
                                     focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
                                             onClick={() => setStudentSelection(index)}>Select
                                     </button>
                                 </td>
                                 <td className="py-2 px-6 text-left">
-                                    <button className="bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
+                                    <button className="font-[600] bg-[#E2E8F0] text-black px-4 py-2 border rounded-md hover:bg-[#34345c] hover:text-white
                                         focus:outline-none focus:border-blue-900 focus:ring ring-blue-200 active:bg-blue-800"
                                             onClick={()=>{navigate('/adminDashboard/studentDetails',{state:{id: student.id}})}}
                                     >View Detail</button>
