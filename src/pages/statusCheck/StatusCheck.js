@@ -21,6 +21,7 @@ const StatusCheck = () => {
         console.log(`Email: ${email}, User Type: ${userType}`);
 
         try {
+            setStep(2);
             const response = await fetch('http://localhost:5000/checkStatus', { 
                 method: 'POST',
                 headers: {
@@ -31,11 +32,10 @@ const StatusCheck = () => {
                     userType: userType === 1 ? 'student' : 'coach' 
                 })
             });
-
             if (response.ok) {
                 const data = await response.json();
                 console.log(data.message);
-                setStep(2); 
+                setStep(3); 
             } else {
                 
                 console.error('Failed to send verification code');
@@ -95,20 +95,25 @@ const StatusCheck = () => {
                             {userType === 2 && <img src={checkIcon} className="ml-[8px]" alt="check icon"></img>}
                         </div>
                     </div>
-                    <button className="mt-[32px] rounded-[4px] py-[8px] px-[16px] bg-red-400 hover:bg-red-200 font-[600]" type="submit">Submit</button>
+                    <button className="mt-[32px] rounded-[4px] py-[8px] px-[16px] bg-[#34345c] text-white font-[600]" type="submit">Submit</button>
                 </form>
                 </div>
-                ) : (
+                ) : step === 3 ?(
                         <div className='w-full h-auto bg-[#E2E8F0] mt-[64px] flex flex-col items-center rounded-[64px]'>
                             <h1 className="font-[800] text-[40px] leading-[150%] pt-[32px]">We Sent You an Verification Code!</h1>
                             <h2 className="pt-[32px] font-[700] text-[25px]">Please Enter the Verification Code Sent to Your Email Address to Continue</h2>    
                             <form className="pb-[32px] w-[450px] flex flex-col items-center" onSubmit={handleVerificationCodeCheck}>
                                 <input className="h-[45px] w-full rounded-[6px] mt-[32px] px-[14px]" type="password" placeholder="Enter the verification you recieved in the email" value={verificationCode} onChange={(event)=>{setVerificationCode(event.target.value)}}></input>
                                 <div className="flex flex-row gap-[16px]">
-                                    <button className="mt-[32px] rounded-[4px] font-[600] py-[8px] px-[16px] bg-red-400 hover:bg-red-200" type="submit">Check</button>
-                                    <button className="mt-[32px] rounded-[4px] font-[600] py-[8px] px-[16px] border border-black rounded-[4px] hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors" onClick={() => {setStep(1)}}>Cancel</button>
+                                    <button className="mt-[32px] rounded-[4px] font-[600] py-[8px] px-[16px] bg-[#34345c] text-white" type="submit">Check</button>
+                                    <button className="mt-[32px] rounded-[4px] font-[600] py-[8px] px-[16px] border border-black rounded-[4px]" onClick={() => {setStep(1)}}>Cancel</button>
                                 </div>
                             </form>
+                        </div>
+                    )
+                    : (
+                        <div className="container">
+                            <div className='loading'></div>
                         </div>
                     )
                 }
