@@ -10,7 +10,7 @@ function AdminCoach() {
     
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `http://localhost:5000/admin/coaches`;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coaches`;
             try {
               const response = await fetch(apiUrl, {
                 method: 'GET',
@@ -33,7 +33,7 @@ function AdminCoach() {
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `http://localhost:5000/admin/coaches?searchParam=${paramType.toLowerCase()}&value=${param}`;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coaches?searchParam=${paramType.toLowerCase()}&value=${param}`;
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
