@@ -18,21 +18,27 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
 
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = `http://localhost:5000/admin/student/${id}`
+            let apiUrl = `http://localhost:5000/admin/student/${id}`;
             try {
-                const response = await fetch(apiUrl)
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token') // Include the token here
+                    }
+                });
                 if (!response.ok) {
                     throw new Error("Failed to fetch student data.");
                 }
                 const data = await response.json();
                 setStudentData(data);
-                setDobFormat(data.date_of_birth.substring(0,10))
+                setDobFormat(data.date_of_birth.substring(0,10));
             } catch (error) {
                 console.error("Error fetching student data:", error);
             }
         };
         fetchStudentData();
-    }, []);
+    }, [id]);
 
     const schema = z.object({
         status: z.string().min(2)
@@ -55,19 +61,56 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
     }
 
     const updateStatus = (status) => {
-        let obj = new Object()
-        console.log(status.status)
-        obj.newStatus = "" + status.status + "";
-        console.log(obj)
-        updateStudentStatus(JSON.stringify(obj), id)
-
-
-    }
+        let obj = new Object();
+        obj.newStatus = status.status;
+    
+        const apiUrl = `http://localhost:5000/admin/student/${id}/status`;
+    
+        fetch(apiUrl, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token') 
+            },
+            body: JSON.stringify(obj)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update student status');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Status updated successfully', data);
+        })
+        .catch(error => {
+            console.error('Error updating student status:', error);
+        });
+    };
 
     const clearCoach = () => {
-        console.log("trying to remove coach")
-        removeCoach(id)
-    }
+        const apiUrl = `http://localhost:5000/admin/application/${id}/unmatch`;
+    
+        fetch(apiUrl, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token') 
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to remove coach');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Coach removed successfully', data);
+        })
+        .catch(error => {
+            console.error('Error removing coach:', error);
+        });
+    };
 
     return(
         <div className="w-full mx-auto my-5">

@@ -10,25 +10,38 @@ function AdminCoach() {
     
     useEffect(() => {
         const fetchCoachData = async () => {
+            let apiUrl = `http://localhost:5000/admin/coaches`;
             try {
-                const response = await fetch("http://localhost:5000/admin/coaches");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch coaches data.");
-                }
-                const data = await response.json();
-                setCoachData(data);
+              const response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+              });
+              if (!response.ok) {
+                throw new Error("Failed to fetch coaches data.");
+              }
+              const data = await response.json();
+              setCoachData(data);
             } catch (error) {
-                console.error("Error fetching coaches data:", error);
+              console.error("Error fetching coaches data:", error);
             }
-        };
+          };
         fetchCoachData();
     }, []);
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `http://localhost:5000/admin/coaches?searchParam=${paramType.toLowerCase()}&value=${param}`
+            let apiUrl = `http://localhost:5000/admin/coaches?searchParam=${paramType.toLowerCase()}&value=${param}`;
             try {
-                const response = await fetch(apiUrl)
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                });
                 if (!response.ok) {
                     throw new Error("Failed to fetch coaches data.");
                 }

@@ -133,13 +133,17 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-
       });
+  
+      const data = await response.json();
+  
       if (response.status === 300) {
+        localStorage.setItem('token', data.token);
+  
         setUser(formData);
         window.location.pathname = "/adminDashboard/students";
       } else if (response.status === 301) {
-        console.log(response.status);
+        console.log("Unauthorized");
         window.location.pathname = "/adminUnauthorized";
       } else if (response.status === 500) {
         console.log("Server Error");
@@ -150,6 +154,27 @@ function App() {
     }
   };
 
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token');
+    
+    if (token) {
+      try {
+        await fetch("http://localhost:5000/admin/log_out", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          }
+        });
+  
+        localStorage.removeItem('token');
+        window.location.pathname = "/";
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    }
+  };
+  
   const match = async (data) => {
     try {
       console.log(data)
@@ -240,7 +265,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <DynamicNavbar/>
+      <DynamicNavbar onLogout={handleLogout}/>
         <div className="pt-[75px] px-[10%]">
           <Routes>
             <Route exact path="/" element={<Home/>}/>
@@ -270,11 +295,13 @@ function App() {
         </div>
     </BrowserRouter>
   );
-}
 
-function DynamicNavbar() {
-  const location = useLocation();
-  return /^\/adminDashboard\b/.test(location.pathname) ? <AdminNavbar/> : <Navbar/>;
+  function DynamicNavbar() {
+    const location = useLocation();
+    return /^\/adminDashboard\b/.test(location.pathname) 
+      ? <AdminNavbar onLogout={handleLogout} /> 
+      : <Navbar onLogout={handleLogout} />;
+  }
 }
 
 export default App;

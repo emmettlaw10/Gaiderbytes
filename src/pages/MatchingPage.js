@@ -18,21 +18,21 @@ const MatchingPage = ({createMatch}) => {
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = ""
+            let apiUrl = "";
+            if (paramTypeC === "ID") {
+                apiUrl = `http://localhost:5000/admin/available_coaches/${paramC}`;
+            } else {
+                apiUrl = `http://localhost:5000/admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`;
+            }
+    
             try {
-                if(paramTypeC === "ID"){
-                    apiUrl = `http://localhost:5000/admin/available_coaches/${paramC}`
-                }
-                else if(paramTypeC === "Name"){
-                    // const parts = param.split(' ');
-                    // const first_name = parts[0];
-                    // const last_name = parts[1];
-                    apiUrl = `http://localhost:5000/admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`
-                }
-                else{
-                    apiUrl = (`http://localhost:5000/admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`);
-                }
-                const response = await fetch(apiUrl)
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                });
                 if (!response.ok) {
                     throw new Error("Failed to fetch coaches data.");
                 }
@@ -47,28 +47,28 @@ const MatchingPage = ({createMatch}) => {
 
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = ""
+            let apiUrl = "";
+            if (paramTypeS === "ID") {
+                apiUrl = `http://localhost:5000/admin/unmatched_students/${paramS}`;
+            } else {
+                apiUrl = `http://localhost:5000/admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`;
+            }
+    
             try {
-                if(paramTypeS === "ID"){
-                    apiUrl = `http://localhost:5000/admin/unmatched_students/${paramS}`
-                }
-                else if(paramTypeS === "Name"){
-                    // const parts = param.split(' ');
-                    // const first_name = parts[0];
-                    // const last_name = parts[1];
-                    apiUrl = `http://localhost:5000/admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`
-                }
-                else{
-                    apiUrl = (`http://localhost:5000/admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`);
-                }
-                const response = await fetch(apiUrl)
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                });
                 if (!response.ok) {
-                    throw new Error("Failed to fetch Students data.");
+                    throw new Error("Failed to fetch students data.");
                 }
                 const data = await response.json();
                 setStudents(data);
             } catch (error) {
-                console.error("Error fetching Students data:", error);
+                console.error("Error fetching students data:", error);
             }
         };
         fetchStudentData();
@@ -104,14 +104,33 @@ const MatchingPage = ({createMatch}) => {
         }
     }
     const match = () => {
-        let student = selectedStudent.id
-        let coach = selectedCoach.id
-        let obj = new Object()
-        obj.studentId = ""+student+"";
-        obj.coachId = ""+coach+"";
-        console.log(JSON.stringify(obj))
-        createMatch(JSON.stringify(obj))
-    }
+        let student = selectedStudent.id;
+        let coach = selectedCoach.id;
+        let obj = { studentId: student, coachId: coach };
+    
+        const apiUrl = `http://localhost:5000/admin/match`; 
+    
+        fetch(apiUrl, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify(obj)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to create match');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Match created successfully', data);
+        })
+        .catch(error => {
+            console.error('Error creating match:', error);
+        });
+    };
 
 
     return (

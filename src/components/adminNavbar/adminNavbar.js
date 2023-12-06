@@ -2,7 +2,7 @@ import React from 'react'
 import logo from './../../images/logo.jpg';
 import { useNavigate  } from "react-router-dom";
 
-const AdminNavbar = () => {
+const AdminNavbar = ({ onLogout }) => {
     const navigate = useNavigate();
   return (
     <div className="px-[10%] h-[75px] w-full bg-white fixed top-0 z-10 shadow-md">
@@ -18,6 +18,9 @@ const AdminNavbar = () => {
                     </div>
                     <div onClick={()=>{navigate("/adminDashboard/matching")}} className="cursor-pointer">
                         Matching
+                    </div>
+                    <div onClick={onLogout} className="cursor-pointer">
+                        Log Out
                     </div>
                 </div>
             </div>

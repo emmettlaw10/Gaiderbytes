@@ -11,8 +11,15 @@ function AdminStudent() {
     
     useEffect(() => {
         const fetchStudentData = async () => {
+            let apiUrl = `http://localhost:5000/admin/students`;
             try {
-                const response = await fetch("http://localhost:5000/admin/students");
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token') 
+                    },
+                });
                 if (!response.ok) {
                     throw new Error("Failed to fetch student data.");
                 }
@@ -24,12 +31,18 @@ function AdminStudent() {
         };
         fetchStudentData();
     }, []);
-
+    
     useEffect(() => {
         const fetchStudentData = async () => {
             let apiUrl = `http://localhost:5000/admin/students?searchParam=${paramType.toLowerCase()}&value=${param}`
             try {
-                const response = await fetch(apiUrl)
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token') 
+                    },
+                });
                 if (!response.ok) {
                     throw new Error("Failed to fetch student data.");
                 }
