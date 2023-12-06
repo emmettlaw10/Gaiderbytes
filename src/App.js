@@ -26,7 +26,8 @@ import MatchSuccess from "./pages/MatchSuccess";
 import CoachMax from "./pages/CoachMax";
 import StudentDetails from "./pages/StudentDetails";
 import CoachDetails from "./pages/CoachDetails";
-
+import { AuthProvider } from "./authentication/AuthContext";
+import {ProtectedRoute} from './authentication/ProtectedRoute'; 
 
 
 
@@ -137,6 +138,7 @@ function App() {
       });
       if (response.status === 300) {
         setUser(formData);
+        localStorage.setItem('authToken', response.token);
         window.location.pathname = "/adminDashboard/students";
       } else if (response.status === 301) {
         console.log(response.status);
@@ -239,37 +241,50 @@ function App() {
 
 
   return (
-    <BrowserRouter>
-      <DynamicNavbar/>
+    <AuthProvider>
+      <BrowserRouter>
+        <DynamicNavbar/>
         <div className="pt-[75px] px-[10%]">
           <Routes>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/student-application" element={<StudentApplication onSave={handleSave} student={student} />} />
-            <Route exact path="/coach-application" element={<CoachApplication onSave={handleSaveCoach} coach={coach}/>} />
-            <Route exact path="/success" element={<ApplicationSuccess/>} />
-            <Route exact path="/fail" element={<ApplicationFail/>} />
-            <Route exact path="/serverError" element={<ServerError/>} />
-            <Route exact path="/checkStatus" element={<StatusCheck/>} />
-            <Route exact path="/eligibilityCheck" element={<EligibilityCheck/>}/>
-            <Route exact path="/eligible" element={<Eligible/>} />
-            <Route exact path="/ineligible" element={<Ineligible/>} />
-            <Route exact path="/students" element={<StudentsPage/>} />
-            <Route exact path="/coaches" element={<CoachesPage/>} />
-            <Route exact path="/about-us" element={<AboutUs/>}/>
-            <Route exact path="/admin" element={<AdminLogin onSave={handleLogin}/>}/>
-            <Route exact path="/adminDashboard/students" element={<AdminStudent/>}/>
-            <Route exact path="/adminDashboard/coaches" element={<AdminCoach/>}/>
-            <Route exact path="/adminUnauthorized" element={<AdminUnauthorized/>}/>
-            <Route exact path="/adminDashboard/matching" element={<MatchingPage createMatch={match}/>}/>
-            <Route exact path="/matchFailStudent" element={<StudentMatchedAlready/>}/>
-            <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
-            <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
-            <Route exact path="/adminDashboard/studentDetails" element={<StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/>}/>
-            <Route exact path="/adminDashboard/coachDetails" element={<CoachDetails updateCoachStatus={updateCoachStatus} />}/>
+            {/* Protected admin dashboard routes */}
+            <Route path="/adminDashboard/students" element={
+              <ProtectedRoute component={AdminStudent} />
+            }/>
+            <Route path="/adminDashboard/coaches" element={
+              <ProtectedRoute component={AdminCoach} />
+            }/>
+            <Route path="/adminDashboard/studentDetails" element={
+              <ProtectedRoute component={() => <StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/>} />
+            }/>
+            <Route path="/adminDashboard/coachDetails" element={
+              <ProtectedRoute component={() => <CoachDetails updateCoachStatus={updateCoachStatus} />} />
+            }/>
+  
+            {/* Other public routes */}
+            <Route path="/" element={<Home/>}/>
+            <Route path="/student-application" element={<StudentApplication onSave={handleSave} student={student} />} />
+            <Route path="/coach-application" element={<CoachApplication onSave={handleSaveCoach} coach={coach}/>} />
+            <Route path="/success" element={<ApplicationSuccess/>} />
+            <Route path="/fail" element={<ApplicationFail/>} />
+            <Route path="/serverError" element={<ServerError/>} />
+            <Route path="/checkStatus" element={<StatusCheck/>} />
+            <Route path="/eligibilityCheck" element={<EligibilityCheck/>}/>
+            <Route path="/eligible" element={<Eligible/>} />
+            <Route path="/ineligible" element={<Ineligible/>} />
+            <Route path="/students" element={<StudentsPage/>} />
+            <Route path="/coaches" element={<CoachesPage/>} />
+            <Route path="/about-us" element={<AboutUs/>}/>
+            <Route path="/admin" element={<AdminLogin onSave={handleLogin}/>}/>
+            <Route path="/adminUnauthorized" element={<AdminUnauthorized/>}/>
+            <Route path="/adminDashboard/matching" element={<ProtectedRoute component={MatchingPage} createMatch={match}/>}/>
+            <Route path="/matchFailStudent" element={<StudentMatchedAlready/>}/>
+            <Route path="/matchFailCoach" element={<CoachMax/>}/>
+            <Route path="/matchSuccess" element={<MatchSuccess/>}/>
           </Routes>
         </div>
-    </BrowserRouter>
-  );
+      </BrowserRouter>
+    </AuthProvider>
+  );  
 }
 
 function DynamicNavbar() {
