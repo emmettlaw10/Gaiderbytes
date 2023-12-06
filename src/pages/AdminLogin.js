@@ -35,7 +35,7 @@ const AdminLogin = ({onSave}) => {
                 <form onSubmit={handleSubmit(login)} className='p-3 flex flex-col items-center'>
                     <div>
                         <label htmlFor="username" className="font-[500]">Username: </label>
-                        <input type="text" className="rounded-md p-3 ml-2 mb-5 w-50 " placeholder="Username"
+                        <input type="text" className="rounded-md p-3 ml-2 mb-5 w-50" placeholder="Username"
                                {...register("username")}
                         />
                         <div style={{color: "red"}}>
@@ -52,7 +52,7 @@ const AdminLogin = ({onSave}) => {
                         </div>
                     </div>
                     <button className="w-full font-[600] text-[20px] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 p-2 rounded-md mt-4 m-2 ml-2" type="submit">Sign In</button>
-                    <button className="w-full font-[600] text-[20px] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 p-2 rounded-md mt-4 m-2 ml-2" type="button" onClick={navigateToSignUp}>
+                    <button className="w-full font-[600] text-[20px] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 p-2 rounded-md mt-2 m-2 ml-2" type="button" onClick={navigateToSignUp}>
                         Sign Up </button>
                 </form>
             </div>
