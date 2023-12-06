@@ -10,54 +10,29 @@ import {zodResolver} from "@hookform/resolvers/zod";
 const CoachDetails = ({updateCoachStatus}) => {
 
     const location = useLocation()
-    // const id = location.state.id
-    const [coachData, setCoachData] = useState({
-        id: 1,
-        first_name: "Alex",
-        last_name: "Smith",
-        email: "alex.smith@email.com",
-        province: "Ontario",
-        city: "Toronto",
-        address: "123 Maple Street",
-        postal_code: "M1A 2B3",
-        date_of_birth: "1990-01-01",
-        pronoun: "they/them",
-        years_of_experience: 5,
-        resume_url: "http://example.com/resume/alexsmith",
-        self_identification: "Energetic and dedicated coach with a passion for sports and community engagement.",
-        gen_status: "active",
-        languages: "English, French",
-        institutions: "University of Toronto, Coaching Association of Canada",
-        availability: "Weekdays after 5 PM, Weekends",
-        introduction: "I am a dedicated and experienced sports coach with a passion for helping athletes achieve their best.",
-        reside_in_canada: true,
-        post_secondary_exp: true,
-        status: "pending",
-        post_secondary_program: "Physical Education",
-        verification_code: 123456
-    }
-    );
+    const id = location.state.id
+    const [coachData, setCoachData] = useState({});
     const [dobFormat, setDobFormat] = useState("")
 
 
-    // useEffect(() => {
-    //     const fetchCoachData = async () => {
-    //         let apiUrl = `http://localhost:5000/admin/coach/${id}`
-    //         console.log(apiUrl)
-    //         try {
-    //             const response = await fetch(apiUrl)
-    //             if (!response.ok) {
-    //                 throw new Error("Failed to fetch coach data.");
-    //             }
-    //             const data = await response.json();
-    //             setCoachData(data);
-    //             setDobFormat(data.date_of_birth.substring(0,10))
-    //         } catch (error) {
-    //             console.error("Error fetching coach data:", error);
-    //         }
-    //     };
-    //     fetchCoachData();
-    // }, []);
+    useEffect(() => {
+        const fetchCoachData = async () => {
+            let apiUrl = `http://localhost:5000/admin/coach/${id}`
+            console.log(apiUrl)
+            try {
+                const response = await fetch(apiUrl)
+                if (!response.ok) {
+                    throw new Error("Failed to fetch coach data.");
+                }
+                const data = await response.json();
+                setCoachData(data);
+                setDobFormat(data.date_of_birth.substring(0,10))
+            } catch (error) {
+                console.error("Error fetching coach data:", error);
+            }
+        };
+        fetchCoachData();
+    }, []);
 
     const schema = z.object({
         status: z.string().min(2)
@@ -84,14 +59,12 @@ const CoachDetails = ({updateCoachStatus}) => {
         console.log(status.status)
         obj.applicationType = ""+"coach"+"";
         obj.newStatus = ""+status.status+"";
-        // updateCoachStatus(JSON.stringify(obj), id)
+        updateCoachStatus(JSON.stringify(obj), id)
     }
 
     const clearCoach = () => {
         console.log("trying to remove coach")
     }
-
-
    
     return(
         <div className="w-full my-5">
