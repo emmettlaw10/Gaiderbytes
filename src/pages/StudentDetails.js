@@ -85,7 +85,7 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
                         </div>
                         <div className="flex flex-row min-w-1/3 items-center">
                             <label className="text-xl font-bold" htmlFor="status">New Status:</label>
-                            <Select className="rounded-md ml-2 w-full w-[200px]"
+                            <Select className="rounded-md ml-2 w-[200px]"
                                     value ={statuses.find(({value}) => value ===field.value)}
                                     onChange={handleStatusChange}
                                     options={statuses}
