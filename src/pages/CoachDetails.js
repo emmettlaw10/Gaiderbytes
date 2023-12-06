@@ -17,22 +17,27 @@ const CoachDetails = ({updateCoachStatus}) => {
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `http://localhost:5000/admin/coach/${id}`
-            console.log(apiUrl)
+            let apiUrl = `http://localhost:5000/admin/coach/${id}`;
             try {
-                const response = await fetch(apiUrl)
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token') // Include the token here
+                    }
+                });
                 if (!response.ok) {
                     throw new Error("Failed to fetch coach data.");
                 }
                 const data = await response.json();
                 setCoachData(data);
-                setDobFormat(data.date_of_birth.substring(0,10))
+                setDobFormat(data.date_of_birth.substring(0,10));
             } catch (error) {
                 console.error("Error fetching coach data:", error);
             }
         };
         fetchCoachData();
-    }, []);
+    }, [id]);
 
     const schema = z.object({
         status: z.string().min(2)
@@ -55,11 +60,32 @@ const CoachDetails = ({updateCoachStatus}) => {
     }
 
     const updateStatus = (status) => {
-        let obj = new Object()
-        console.log(status.status)
-        obj.applicationType = ""+"coach"+"";
-        obj.newStatus = ""+status.status+"";
-        updateCoachStatus(JSON.stringify(obj), id)
+        let obj = new Object();
+        obj.applicationType = "coach";
+        obj.newStatus = status.status;
+    
+        const apiUrl = `http://localhost:5000/admin/coach/${id}/status`;
+    
+        fetch(apiUrl, {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token') 
+            },
+            body: JSON.stringify(obj)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update coach status');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Status updated successfully', data);
+        })
+        .catch(error => {
+            console.error('Error updating coach status:', error);
+        });
     }
 
     const clearCoach = () => {
