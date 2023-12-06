@@ -26,6 +26,7 @@ import MatchSuccess from "./pages/MatchSuccess";
 import CoachMax from "./pages/CoachMax";
 import StudentDetails from "./pages/StudentDetails";
 import CoachDetails from "./pages/CoachDetails";
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 
@@ -282,15 +283,15 @@ function App() {
             <Route exact path="/coaches" element={<CoachesPage/>} />
             <Route exact path="/about-us" element={<AboutUs/>}/>
             <Route exact path="/admin" element={<AdminLogin onSave={handleLogin}/>}/>
-            <Route exact path="/adminDashboard/students" element={<AdminStudent/>}/>
-            <Route exact path="/adminDashboard/coaches" element={<AdminCoach/>}/>
+            <Route exact path="/adminDashboard/students" element={<ProtectedRoute><AdminStudent/></ProtectedRoute>}/>
+            <Route exact path="/adminDashboard/coaches" element={<ProtectedRoute> <AdminCoach /> </ProtectedRoute>}/>
             <Route exact path="/adminUnauthorized" element={<AdminUnauthorized/>}/>
-            <Route exact path="/adminDashboard/matching" element={<MatchingPage createMatch={match}/>}/>
+            <Route exact path="/adminDashboard/matching" element={<ProtectedRoute><MatchingPage createMatch={match}/></ProtectedRoute>}/>
             <Route exact path="/matchFailStudent" element={<StudentMatchedAlready/>}/>
             <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
             <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
-            <Route exact path="/adminDashboard/studentDetails" element={<StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/>}/>
-            <Route exact path="/adminDashboard/coachDetails" element={<CoachDetails updateCoachStatus={updateCoachStatus} />}/>
+            <Route exact path="/adminDashboard/studentDetails" element={<ProtectedRoute><StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/></ProtectedRoute>}/>
+            <Route exact path="/adminDashboard/coachDetails" element={<ProtectedRoute><CoachDetails updateCoachStatus={updateCoachStatus} /></ProtectedRoute>}/>
           </Routes>
         </div>
     </BrowserRouter>
