@@ -66,39 +66,38 @@ const CoachDetails = ({updateCoachStatus}) => {
         console.log("trying to remove coach")
     }
 
+   
     return(
-        <div className="lg:w-2/3 w-full m-auto">
+        <div className="w-full m-auto">
             <div className="w-full m-auto text-center">
-                <h1 className="text-3xl font-bold underline m-5">Coach Details</h1>
+                <h1 className="text-[36px] font-[800] m-5">Coach Details</h1>
             </div>
             <form onSubmit={handleSubmit(updateStatus)}>
                 <div className="flex flex-row mt-5 justify-between">
-                    <div className="flex flex-col min-w-1/3">
-                        <label className="text-xl font-bold mb-1">Current Status</label>
-                        <div className="text-xl font-italic ml-10">
+                    <div className="flex flex-row min-w-1/3  items-center pb-2">
+                        <label className="text-xl font-bold mb-1">Current Status:</label>
+                        <div className="text-xl font-italic ml-5 pb-2">
                             {coachData.status}
                         </div>
                     </div>
-                    <div className="flex flex-col min-w-1/3">
+                    <div className="flex flex-row min-w-1/3 items-center">
                         <label className="text-xl font-bold" htmlFor="status">New Status:</label>
-                        <Select className="rounded-md p-3 mt-1.5 ml-2 w-full md:w-64 lg:w-80 xl:w-96"
+                        <Select className="rounded-md ml-2 w-[200px]"
                                 value ={statuses.find(({value}) => value ===field.value)}
                                 onChange={handleStatusChange}
                                 options={statuses}
                         />
-                        <div style={{color: "red"}}>
+                         <button className="font-[600] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 py-2 rounded-md px-5 ml-2" type="submit">Change Status</button>
+                        <div className="text-red-500 justify-end">
                             {errors.status?.message}
                         </div>
                     </div>
-                    <div className="flex flex-col min-w-1/3">
-                        <button className="bg-red-400 p-3 rounded-md hover:bg-red-200 w-1/2 m-auto" type="submit">Change Status</button>
-                    </div>
                 </div>
             </form>
-            <div className="w-full m-auto text-center">
-                <h1 className="text-2xl font-bold m-5">Personal Information</h1>
+            <div className="w-full text-start mt-5">
+                <h1 className="text-[24px] font-[800]">Personal Information</h1>
             </div>
-            <table className="min-w-max w-full m-auto">
+            <table className="m-auto max-w-100 max-w-100 whitespace-normal">
                 <thead>
                 <tr className="bg-[#E2E8F0] text-black uppercase text-sm leading-normal">
                     <th className="py-2 px-6 text-left">First Name</th>
@@ -109,49 +108,49 @@ const CoachDetails = ({updateCoachStatus}) => {
                     <th className="py-2 px-6 text-left">Address</th>
                     <th className="py-2 px-6 text-left">City</th>
                     <th className="py-2 px-6 text-left">Province</th>
-                    <th className="py-2 px-6 text-left">Post Code</th>
+                    <th className="py-2 px-6 text-left whitespace-pre">Post Code</th>
                     <th className="py-2 px-6 text-left">Availability</th>
                 </tr>
                 </thead>
                 <tbody className="text-black text-sm font-light">
                 <tr className="border-b border-gray-200 hover:bg-gray-100">
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.first_name}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.last_name}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.email}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.pronoun}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {dobFormat}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.address}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.city}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left ">
                         {coachData.province}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.postal_code}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.availability}
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div className="w-full m-auto text-center">
-                <h1 className="text-2xl font-bold m-5">Professional Qualifications</h1>
+            <div className="w-full text-start mt-5">
+                <h1 className="text-[24px] font-[800]">Professional Qualifications</h1>
             </div>
-            <table className="min-w-max w-full table-auto">
+            <table className="max-w-100 w-full m-auto whitespace-normal">
                 <thead>
                 <tr className="bg-[#E2E8F0] text-black uppercase text-sm leading-normal">
                     <th className="py-2 px-6 text-left">Institution Attended</th>
@@ -163,26 +162,26 @@ const CoachDetails = ({updateCoachStatus}) => {
                 </thead>
                 <tbody className="text-black text-sm font-light">
                 <tr className="border-b border-gray-200 hover:bg-gray-100">
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.institutions}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.post_secondary_program}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.resume_url}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.post_secondary_exp}
                     </td>
-                    <td className="py-2 px-6 text-left whitespace-nowrap">
+                    <td className="py-2 px-6 text-left">
                         {coachData.years_of_experience}
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div className="w-full m-auto text-center items-center">
-                <h1 className="text-3xl font-bold m-5">Introduction</h1>
+            <div className="w-full text-start mt-5">
+                <h1 className="text-[24px] font-[800]">Introduction</h1>
             </div>
             <div className="w-full bg-slate-200 p-5">
                 <a>
