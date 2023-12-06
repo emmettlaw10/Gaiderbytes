@@ -65,39 +65,40 @@ const CoachDetails = ({updateCoachStatus}) => {
     const clearCoach = () => {
         console.log("trying to remove coach")
     }
-
    
     return(
-        <div className="w-full m-auto">
-            <div className="w-full m-auto text-center">
-                <h1 className="text-[36px] font-[800] m-5">Coach Details</h1>
-            </div>
-            <form onSubmit={handleSubmit(updateStatus)}>
-                <div className="flex flex-row mt-5 justify-between">
-                    <div className="flex flex-row min-w-1/3  items-center pb-2">
-                        <label className="text-xl font-bold mb-1">Current Status:</label>
-                        <div className="text-xl font-italic ml-5 pb-2">
-                            {coachData.status}
-                        </div>
-                    </div>
-                    <div className="flex flex-row min-w-1/3 items-center">
-                        <label className="text-xl font-bold" htmlFor="status">New Status:</label>
-                        <Select className="rounded-md ml-2 w-[200px]"
-                                value ={statuses.find(({value}) => value ===field.value)}
-                                onChange={handleStatusChange}
-                                options={statuses}
-                        />
-                         <button className="font-[600] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 py-2 rounded-md px-5 ml-2" type="submit">Change Status</button>
-                        <div className="text-red-500 justify-end">
-                            {errors.status?.message}
-                        </div>
-                    </div>
+        <div className="w-full my-5">
+            <div className="bg-[#E2E8F0] rounded-md w-full p-3">
+                <div className="w-full m-auto text-center">
+                    <h1 className="text-[36px] font-[800]">Coach Details</h1>
                 </div>
-            </form>
+                <form onSubmit={handleSubmit(updateStatus)}>
+                    <div className="flex flex-row mt-5 justify-between">
+                        <div className="flex flex-row min-w-1/3  items-center pb-2">
+                            <label className="text-xl font-bold">Current Status:</label>
+                            <div className="text-xl font-italic ml-2 uppercase">
+                                {coachData.status}
+                            </div>
+                        </div>
+                        <div className="flex flex-row min-w-1/3 items-center">
+                            <label className="text-xl font-bold" htmlFor="status">New Status:</label>
+                            <Select className="rounded-md ml-2 w-[200px]"
+                                    value ={statuses.find(({value}) => value ===field.value)}
+                                    onChange={handleStatusChange}
+                                    options={statuses}
+                            />
+                            <button className="font-[600] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 py-2 rounded-md px-5 ml-2" type="submit">Change Status</button>
+                            <div className="text-red-500 justify-end">
+                                {errors.status?.message}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div className="w-full text-start mt-5">
                 <h1 className="text-[24px] font-[800]">Personal Information</h1>
             </div>
-            <table className="m-auto max-w-100 max-w-100 whitespace-normal">
+            <table className="m-auto w-full whitespace-normal">
                 <thead>
                 <tr className="bg-[#E2E8F0] text-black uppercase text-sm leading-normal">
                     <th className="py-2 px-6 text-left">First Name</th>
