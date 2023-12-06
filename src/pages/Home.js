@@ -21,7 +21,7 @@ const Home = () => {
                 />
             </div>
             <div>
-                <footer className='bottom-0 left-1/2 cursor-pointer absolute underline' >
+                <footer className='center-5 right-1/2 cursor-pointer absolute underline' >
                     <a onClick={()=>{window.location.pathname= "/admin"}}>
                         Admin login
                     </a>

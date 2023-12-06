@@ -142,6 +142,7 @@ function App() {
         localStorage.setItem('token', data.token);
   
         setUser(formData);
+        localStorage.setItem('authToken', response.token);
         window.location.pathname = "/adminDashboard/students";
       } else if (response.status === 301) {
         console.log("Unauthorized");
