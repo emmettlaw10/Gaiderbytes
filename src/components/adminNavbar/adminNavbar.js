@@ -22,6 +22,9 @@ const AdminNavbar = ({ onLogout }) => {
                     <div onClick={onLogout} className="cursor-pointer">
                         Log Out
                     </div>
+                    <div onClick={()=>{navigate("/adminDashboard/change_password")}} className="cursor-pointer">
+                        Change Password
+                    </div>
                 </div>
             </div>
         </div>

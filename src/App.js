@@ -27,6 +27,8 @@ import CoachMax from "./pages/CoachMax";
 import StudentDetails from "./pages/StudentDetails";
 import CoachDetails from "./pages/CoachDetails";
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminSignUp from "./pages/AdminSignUp";
+import ChangeAdminPassword from "./pages/ChangeAdminPassword";
 
 
 
@@ -290,6 +292,8 @@ function App() {
             <Route exact path="/matchFailStudent" element={<StudentMatchedAlready/>}/>
             <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
             <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
+            <Route exact path="/admin/signup" element={<AdminSignUp />} />
+            <Route exact path="/adminDashboard/change_password" element={<ProtectedRoute><ChangeAdminPassword /></ProtectedRoute>} />
             <Route exact path="/adminDashboard/studentDetails" element={<ProtectedRoute><StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/></ProtectedRoute>}/>
             <Route exact path="/adminDashboard/coachDetails" element={<ProtectedRoute><CoachDetails updateCoachStatus={updateCoachStatus} /></ProtectedRoute>}/>
           </Routes>
