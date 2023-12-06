@@ -25,6 +25,9 @@ const Navbar = () => {
                         <div onClick={()=>{navigate("/students")}} className="cursor-pointer">
                             Students
                         </div>
+                        <div onClick={()=>{navigate("/checkStatus")}} className="cursor-pointer">
+                            Check Status
+                        </div>
                         <div onClick={redirectDonation} className="cursor-pointer">
                             Donate
                         </div>

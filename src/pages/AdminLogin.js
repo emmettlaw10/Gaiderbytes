@@ -4,6 +4,7 @@ import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {object} from "zod";
+import { useNavigate } from 'react-router-dom';
 
 
 const AdminLogin = ({onSave}) => {
@@ -13,6 +14,7 @@ const AdminLogin = ({onSave}) => {
         password: z.string().min(5),
     });
 
+    const navigate = useNavigate();
 
     const {register, handleSubmit, formState, control} = useForm({resolver: zodResolver(schema)});
 
@@ -22,6 +24,9 @@ const AdminLogin = ({onSave}) => {
         onSave(formValues)
     }
 
+    const navigateToSignUp = () => {
+        navigate('/admin/signup');
+      };
 
     return (
         <div>
@@ -47,6 +52,8 @@ const AdminLogin = ({onSave}) => {
                         </div>
                     </div>
                     <button className="w-full font-[600] text-[20px] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 p-2 rounded-md mt-4 m-2 ml-2" type="submit">Sign In</button>
+                    <button className="w-full font-[600] text-[20px] border border-black hover:border-[#34345c] hover:text-white hover:bg-[#34345c] transition-colors duration-300 p-2 rounded-md mt-4 m-2 ml-2" type="button" onClick={navigateToSignUp}>
+                        Sign Up </button>
                 </form>
             </div>
         </div>
