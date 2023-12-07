@@ -17,7 +17,7 @@ const CoachDetails = () => {
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}`;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/coach/${id}`;
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -64,7 +64,7 @@ const CoachDetails = () => {
         obj.applicationType = "coach";
         obj.newStatus = status.status;
     
-        const apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}/status`;
+        const apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/coach/${id}/status`;
     
         fetch(apiUrl, {
             method: 'PUT', 

@@ -14,7 +14,7 @@ function ChangeAdminPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/change_password`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/change_password`
     if (!token) {
       alert("You must be logged in to change the password.");
       return;

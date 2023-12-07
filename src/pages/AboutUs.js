@@ -41,8 +41,6 @@ function AboutUs (){
                     <p><strong>Address:</strong> 123 AnyStreet Road City, Prov., A0X1X2 <br/> <strong>Email Nancy Van Dorp: </strong>nancy@cdnhecoaches.org
                         <br/><strong>Phone:</strong> 416-801-0135
                     </p>
-                    <h2 className="text-xl">Or visit our FAQs</h2>
-                    <button className="bg-[#E2E8F0] p-3 rounded-md hover:bg-[#34345c] hover:text-white border border-black transition-colors duration-300">FAQS</button>
                 </div>
             </div>
         </div>

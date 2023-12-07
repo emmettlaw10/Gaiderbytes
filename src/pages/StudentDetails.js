@@ -18,7 +18,7 @@ const StudentDetails = () => {
 
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = process.env.REACT_APP_FETCH_STUDENT_DATA;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/student/${id}`
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -64,7 +64,7 @@ const StudentDetails = () => {
         let obj = new Object();
         obj.newStatus = status.status;
     
-        const apiUrl = process.env.REACT_APP_UPDATE_STUDENT_STATUS;
+        let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/student/${id}/status`
     
         fetch(apiUrl, {
             method: 'PUT', 
@@ -89,7 +89,7 @@ const StudentDetails = () => {
     };
 
     const clearCoach = () => {
-        const apiUrl = process.env.REACT_APP_REMOVE_COACH;
+        let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/application/${id}/unmatch`
     
         fetch(apiUrl, {
             method: 'PUT', 

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import Loading from "./../components/loading/loading"
 
 const MatchingPage = ({createMatch}) => {
 
@@ -12,7 +13,8 @@ const MatchingPage = ({createMatch}) => {
     const [paramC, setParamC] = useState("");
     const [paramTypeS, setParamTypeS] = useState("Name");
     const [paramS, setParamS] = useState("");
-    const [canMatch, setCanMatch] = useState(true)
+    const [canMatch, setCanMatch] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -20,9 +22,9 @@ const MatchingPage = ({createMatch}) => {
         const fetchCoachData = async () => {
             let apiUrl = "";
             if (paramTypeC === "ID") {
-                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/available_coaches/${paramC}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/available_coaches/${paramC}`;
             } else {
-                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`;
             }
     
             try {
@@ -49,12 +51,13 @@ const MatchingPage = ({createMatch}) => {
         const fetchStudentData = async () => {
             let apiUrl = "";
             if (paramTypeS === "ID") {
-                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/unmatched_students/${paramS}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/unmatched_students/${paramS}`;
             } else {
-                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`;
             }
     
             try {
+                setIsLoading(true);
                 const response = await fetch(apiUrl, {
                     method: 'GET',
                     headers: {
@@ -65,6 +68,7 @@ const MatchingPage = ({createMatch}) => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch students data.");
                 }
+                setIsLoading(false);
                 const data = await response.json();
                 setStudents(data);
             } catch (error) {
@@ -108,7 +112,7 @@ const MatchingPage = ({createMatch}) => {
         let coach = selectedCoach.id;
         let obj = { studentId: student, coachId: coach };
     
-        const apiUrl = `${process.env.REACT_APP_DOMAIN}admin/match`;
+        const apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/match`;
     
         fetch(apiUrl, {
             method: 'PUT', 
@@ -135,7 +139,12 @@ const MatchingPage = ({createMatch}) => {
 
 
     return (
-        <div className="">
+        <div>
+            {
+                isLoading ? (
+                    <Loading/>
+                ) : (
+<div className="">
             <div className="shadow-lg bg-slate-200 p-3 rounded-md m-auto mt-5 w-fit align-middle w-full">
                 <div className="flex items-center justify-between">
                     <div className="flex-col">
@@ -287,6 +296,9 @@ const MatchingPage = ({createMatch}) => {
                 </div>
             </div>
 
+        </div>
+                )
+            }
         </div>
 
     )

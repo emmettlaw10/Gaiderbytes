@@ -12,7 +12,7 @@ function AdminSignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let apiUrl =  `${process.env.REACT_APP_DOMAIN}admin/signup`
+    let apiUrl =  `${process.env.REACT_APP_DOMAIN}/admin/signup`
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
