@@ -75,6 +75,9 @@ const StudentDetails = () => {
             body: JSON.stringify(obj)
         })
         .then(response => {
+            if(obj.newStatus !== "matched"){
+                clearCoach();
+            }
             setStatusUpdated(prev => prev + 1);
             if (!response.ok) {
                 throw new Error('Failed to update student status');
