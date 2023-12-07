@@ -20,9 +20,9 @@ const MatchingPage = ({createMatch}) => {
         const fetchCoachData = async () => {
             let apiUrl = "";
             if (paramTypeC === "ID") {
-                apiUrl = `http://localhost:5000/admin/available_coaches/${paramC}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/available_coaches/${paramC}`;
             } else {
-                apiUrl = `http://localhost:5000/admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/available_coaches?searchParam=${paramTypeC.toLowerCase()}&value=${paramC}`;
             }
     
             try {
@@ -49,9 +49,9 @@ const MatchingPage = ({createMatch}) => {
         const fetchStudentData = async () => {
             let apiUrl = "";
             if (paramTypeS === "ID") {
-                apiUrl = `http://localhost:5000/admin/unmatched_students/${paramS}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/unmatched_students/${paramS}`;
             } else {
-                apiUrl = `http://localhost:5000/admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`;
+                apiUrl = `${process.env.REACT_APP_DOMAIN}admin/unmatched_students?searchParam=${paramTypeS.toLowerCase()}&value=${paramS}`;
             }
     
             try {
@@ -108,7 +108,7 @@ const MatchingPage = ({createMatch}) => {
         let coach = selectedCoach.id;
         let obj = { studentId: student, coachId: coach };
     
-        const apiUrl = `http://localhost:5000/admin/match`; 
+        const apiUrl = `${process.env.REACT_APP_DOMAIN}admin/match`;
     
         fetch(apiUrl, {
             method: 'PUT', 
@@ -126,6 +126,7 @@ const MatchingPage = ({createMatch}) => {
         })
         .then(data => {
             console.log('Match created successfully', data);
+            window.location.reload()
         })
         .catch(error => {
             console.error('Error creating match:', error);

@@ -82,8 +82,9 @@ function App() {
   })
 
   const handleSave = async (values) => {
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}studentApplication`
     try {
-      const response = await fetch("http://localhost:5000/studentApplication", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,8 +108,9 @@ function App() {
   };
 
   const handleSaveCoach = async (formData) => {
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}coachApplication`
     try {
-      const response = await fetch("http://localhost:5000/coachApplication", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         body: formData,
       });
@@ -129,8 +131,9 @@ function App() {
   };
 
   const handleLogin = async (formData) => {
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}adminLogin`
     try {
-      const response = await fetch("http://localhost:5000/adminLogin", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -159,11 +162,12 @@ function App() {
   };
 
   const handleLogout = async () => {
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/log_out`
     const token = localStorage.getItem('token');
     
     if (token) {
       try {
-        await fetch("http://localhost:5000/admin/log_out", {
+        await fetch(apiUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -180,9 +184,10 @@ function App() {
   };
   
   const match = async (data) => {
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/match`
     try {
       console.log(data)
-      const response = await fetch("http://localhost:5000/admin/match", {
+      const response = await fetch(apiUrl, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: data,
@@ -206,7 +211,7 @@ function App() {
   };
 
   const updateStudentStatus = async (data, id) => {
-    let apiUrl = `http://localhost:5000/admin/student/${id}/status`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/student/${id}/status`
     try {
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -227,7 +232,7 @@ function App() {
   };
 
   const updateCoachStatus = async (data, id) => {
-    let apiUrl = `http://localhost:5000/admin/coach/${id}/status`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}/status`
     try {
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -249,7 +254,7 @@ function App() {
   };
 
   const removeCoach = async (id) => {
-    let apiUrl = `http://localhost:5000/admin/application/${id}/unmatch`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/application/${id}/unmatch`
     try {
       const response = await fetch(apiUrl, {
         method: "PUT",

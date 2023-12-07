@@ -7,7 +7,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 
 
 
-const StudentDetails = ({updateStudentStatus, removeCoach}) => {
+const StudentDetails = () => {
 
     const location = useLocation()
     const id = location.state.id
@@ -18,7 +18,7 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
 
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = `http://localhost:5000/admin/student/${id}`;
+            let apiUrl = process.env.REACT_APP_FETCH_STUDENT_DATA;
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -64,7 +64,7 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
         let obj = new Object();
         obj.newStatus = status.status;
     
-        const apiUrl = `http://localhost:5000/admin/student/${id}/status`;
+        const apiUrl = process.env.REACT_APP_UPDATE_STUDENT_STATUS;
     
         fetch(apiUrl, {
             method: 'PUT', 
@@ -89,7 +89,7 @@ const StudentDetails = ({updateStudentStatus, removeCoach}) => {
     };
 
     const clearCoach = () => {
-        const apiUrl = `http://localhost:5000/admin/application/${id}/unmatch`;
+        const apiUrl = process.env.REACT_APP_REMOVE_COACH;
     
         fetch(apiUrl, {
             method: 'PUT', 

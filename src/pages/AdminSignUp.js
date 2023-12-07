@@ -12,8 +12,9 @@ function AdminSignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let apiUrl =  `${process.env.REACT_APP_DOMAIN}admin/signup`
     try {
-      const response = await fetch('http://localhost:5000/admin/signup', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +23,6 @@ function AdminSignUp() {
       });
       const data = await response.json();
       console.log(data.message);
-
 
       if (response.status === 201) {
         alert("Admin account created successfully.");

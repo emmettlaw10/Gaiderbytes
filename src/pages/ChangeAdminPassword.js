@@ -13,13 +13,14 @@ function ChangeAdminPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem('token');
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/change_password`
     if (!token) {
       alert("You must be logged in to change the password.");
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/admin/change_password', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

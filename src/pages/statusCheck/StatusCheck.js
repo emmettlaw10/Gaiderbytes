@@ -19,10 +19,10 @@ const StatusCheck = () => {
     const handleStatusCheckSubmit = async (event) => {
         event.preventDefault();
         console.log(`Email: ${email}, User Type: ${userType}`);
-
+        let apiUrl =  `${process.env.REACT_APP_DOMAIN}checkStatus`
         try {
             setStep(2);
-            const response = await fetch('http://localhost:5000/checkStatus', { 
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,9 +47,9 @@ const StatusCheck = () => {
 
     const handleVerificationCodeCheck = async (event) => {
         event.preventDefault();
-    
+        let apiUrl =  `${process.env.REACT_APP_DOMAIN}verifyCode`;
         try {
-            const response = await fetch('http://localhost:5000/verifyCode', {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

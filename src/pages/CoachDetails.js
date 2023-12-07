@@ -7,7 +7,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 
 
 
-const CoachDetails = ({updateCoachStatus}) => {
+const CoachDetails = () => {
 
     const location = useLocation()
     const id = location.state.id
@@ -17,7 +17,7 @@ const CoachDetails = ({updateCoachStatus}) => {
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `http://localhost:5000/admin/coach/${id}`;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}`;
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -64,7 +64,7 @@ const CoachDetails = ({updateCoachStatus}) => {
         obj.applicationType = "coach";
         obj.newStatus = status.status;
     
-        const apiUrl = `http://localhost:5000/admin/coach/${id}/status`;
+        const apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}/status`;
     
         fetch(apiUrl, {
             method: 'PUT', 
@@ -82,6 +82,7 @@ const CoachDetails = ({updateCoachStatus}) => {
         })
         .then(data => {
             console.log('Status updated successfully', data);
+            console.log(process.env.REACT_APP_DOMAIN)
         })
         .catch(error => {
             console.error('Error updating coach status:', error);
