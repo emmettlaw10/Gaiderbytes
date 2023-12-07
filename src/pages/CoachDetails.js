@@ -13,7 +13,7 @@ const CoachDetails = () => {
     const id = location.state.id
     const [coachData, setCoachData] = useState({});
     const [dobFormat, setDobFormat] = useState("")
-
+    const [statusUpdated, setStatusUpdated] = useState(0);
 
     useEffect(() => {
         const fetchCoachData = async () => {
@@ -37,7 +37,7 @@ const CoachDetails = () => {
             }
         };
         fetchCoachData();
-    }, [id]);
+    }, [id, statusUpdated]);
 
     const schema = z.object({
         status: z.string().min(2)
@@ -75,6 +75,7 @@ const CoachDetails = () => {
             body: JSON.stringify(obj)
         })
         .then(response => {
+            setStatusUpdated(prev => prev + 1);
             if (!response.ok) {
                 throw new Error('Failed to update coach status');
             }
@@ -87,10 +88,6 @@ const CoachDetails = () => {
         .catch(error => {
             console.error('Error updating coach status:', error);
         });
-    }
-
-    const clearCoach = () => {
-        console.log("trying to remove coach")
     }
    
     return(

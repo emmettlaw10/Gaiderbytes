@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function ChangeAdminPassword() {
   const [formData, setFormData] = useState({
-    username: '',
+    username: localStorage.getItem('username'),
     currentPassword: '',
     newPassword: ''
   });

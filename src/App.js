@@ -147,6 +147,7 @@ function App() {
         localStorage.setItem('token', data.token);
   
         setUser(formData);
+        localStorage.setItem('username', formData.username);
         localStorage.setItem('authToken', response.token);
         window.location.pathname = "/adminDashboard/students";
       } else if (response.status === 301) {
@@ -299,7 +300,7 @@ function App() {
             <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
             <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
             <Route exact path="/admin/signup" element={<AdminSignUp />} />
-            <Route exact path="/adminDashboard/change_password" element={<ProtectedRoute><ChangeAdminPassword /></ProtectedRoute>} />
+            <Route exact path="/adminDashboard/change_password" element={<ProtectedRoute><ChangeAdminPassword/></ProtectedRoute>} />
             <Route exact path="/adminDashboard/studentDetails" element={<ProtectedRoute><StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/></ProtectedRoute>}/>
             <Route exact path="/adminDashboard/coachDetails" element={<ProtectedRoute><CoachDetails updateCoachStatus={updateCoachStatus} /></ProtectedRoute>}/>
           </Routes>

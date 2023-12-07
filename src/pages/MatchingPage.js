@@ -57,7 +57,6 @@ const MatchingPage = ({createMatch}) => {
             }
     
             try {
-                setIsLoading(true);
                 const response = await fetch(apiUrl, {
                     method: 'GET',
                     headers: {
@@ -68,7 +67,6 @@ const MatchingPage = ({createMatch}) => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch students data.");
                 }
-                setIsLoading(false);
                 const data = await response.json();
                 setStudents(data);
             } catch (error) {
@@ -113,7 +111,7 @@ const MatchingPage = ({createMatch}) => {
         let obj = { studentId: student, coachId: coach };
     
         const apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/match`;
-    
+        setIsLoading(true);
         fetch(apiUrl, {
             method: 'PUT', 
             headers: {
@@ -123,6 +121,7 @@ const MatchingPage = ({createMatch}) => {
             body: JSON.stringify(obj)
         })
         .then(response => {
+            setIsLoading(false);
             if (!response.ok) {
                 throw new Error('Failed to create match');
             }
