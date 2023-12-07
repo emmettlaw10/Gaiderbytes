@@ -13,11 +13,11 @@ const CoachDetails = () => {
     const id = location.state.id
     const [coachData, setCoachData] = useState({});
     const [dobFormat, setDobFormat] = useState("")
-
+    const [statusUpdated, setStatusUpdated] = useState(0);
 
     useEffect(() => {
         const fetchCoachData = async () => {
-            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}`;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/coach/${id}`;
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -37,7 +37,7 @@ const CoachDetails = () => {
             }
         };
         fetchCoachData();
-    }, [id]);
+    }, [id, statusUpdated]);
 
     const schema = z.object({
         status: z.string().min(2)
@@ -64,7 +64,7 @@ const CoachDetails = () => {
         obj.applicationType = "coach";
         obj.newStatus = status.status;
     
-        const apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}/status`;
+        const apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/coach/${id}/status`;
     
         fetch(apiUrl, {
             method: 'PUT', 
@@ -75,6 +75,7 @@ const CoachDetails = () => {
             body: JSON.stringify(obj)
         })
         .then(response => {
+            setStatusUpdated(prev => prev + 1);
             if (!response.ok) {
                 throw new Error('Failed to update coach status');
             }
@@ -87,10 +88,6 @@ const CoachDetails = () => {
         .catch(error => {
             console.error('Error updating coach status:', error);
         });
-    }
-
-    const clearCoach = () => {
-        console.log("trying to remove coach")
     }
    
     return(

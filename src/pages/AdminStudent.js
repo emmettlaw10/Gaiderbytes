@@ -11,7 +11,7 @@ function AdminStudent() {
     
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/students`;
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/students`;
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -34,7 +34,7 @@ function AdminStudent() {
     
     useEffect(() => {
         const fetchStudentData = async () => {
-            let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/students?searchParam=${paramType.toLowerCase()}&value=${param}`
+            let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/students?searchParam=${paramType.toLowerCase()}&value=${param}`
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',

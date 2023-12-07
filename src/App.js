@@ -82,7 +82,7 @@ function App() {
   })
 
   const handleSave = async (values) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}studentApplication`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/studentApplication`
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -108,7 +108,7 @@ function App() {
   };
 
   const handleSaveCoach = async (formData) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}coachApplication`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/coachApplication`
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -131,7 +131,7 @@ function App() {
   };
 
   const handleLogin = async (formData) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}adminLogin`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/adminLogin`
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -147,6 +147,7 @@ function App() {
         localStorage.setItem('token', data.token);
   
         setUser(formData);
+        localStorage.setItem('username', formData.username);
         localStorage.setItem('authToken', response.token);
         window.location.pathname = "/adminDashboard/students";
       } else if (response.status === 301) {
@@ -162,7 +163,7 @@ function App() {
   };
 
   const handleLogout = async () => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/log_out`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/log_out`
     const token = localStorage.getItem('token');
     
     if (token) {
@@ -184,7 +185,7 @@ function App() {
   };
   
   const match = async (data) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/match`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/match`
     try {
       console.log(data)
       const response = await fetch(apiUrl, {
@@ -211,7 +212,7 @@ function App() {
   };
 
   const updateStudentStatus = async (data, id) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/student/${id}/status`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/student/${id}/status`
     try {
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -232,7 +233,7 @@ function App() {
   };
 
   const updateCoachStatus = async (data, id) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/coach/${id}/status`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/coach/${id}/status`
     try {
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -254,7 +255,7 @@ function App() {
   };
 
   const removeCoach = async (id) => {
-    let apiUrl = `${process.env.REACT_APP_DOMAIN}admin/application/${id}/unmatch`
+    let apiUrl = `${process.env.REACT_APP_DOMAIN}/admin/application/${id}/unmatch`
     try {
       const response = await fetch(apiUrl, {
         method: "PUT",
@@ -299,7 +300,7 @@ function App() {
             <Route exact path="/matchFailCoach" element={<CoachMax/>}/>
             <Route exact path="/matchSuccess" element={<MatchSuccess/>}/>
             <Route exact path="/admin/signup" element={<AdminSignUp />} />
-            <Route exact path="/adminDashboard/change_password" element={<ProtectedRoute><ChangeAdminPassword /></ProtectedRoute>} />
+            <Route exact path="/adminDashboard/change_password" element={<ProtectedRoute><ChangeAdminPassword/></ProtectedRoute>} />
             <Route exact path="/adminDashboard/studentDetails" element={<ProtectedRoute><StudentDetails updateStudentStatus={updateStudentStatus} removeCoach={removeCoach}/></ProtectedRoute>}/>
             <Route exact path="/adminDashboard/coachDetails" element={<ProtectedRoute><CoachDetails updateCoachStatus={updateCoachStatus} /></ProtectedRoute>}/>
           </Routes>
